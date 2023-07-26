@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:princess_diaries/presentation/custom_popup.dart';
+import 'package:princess_diaries/presentation/components/custom_popup.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class MainScreen extends StatefulWidget {
