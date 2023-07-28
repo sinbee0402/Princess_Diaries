@@ -39,6 +39,16 @@ class _CurvedNavigationWidgetState extends State<CurvedNavigationWidget> {
         index: index,
         onTap: (index) => setState(() => this.index = index),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.white,
+        shape: const CircleBorder(),
+        child: const Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: screens[index],
     );
   }
