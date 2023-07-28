@@ -8,11 +8,14 @@ class TimeLineScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('timeline page'),
-        centerTitle: true,
+        //title: const Text('main page'),
         actions: [
           IconButton(
             icon: const Icon(Icons.share),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings),
             onPressed: () {},
           ),
         ],
