@@ -8,6 +8,7 @@ part 'post.g.dart';
 @freezed
 class Post with _$Post {
   const factory Post({
+    int? id,
     required String emoji,
     required DateTime date,
     required String title,
