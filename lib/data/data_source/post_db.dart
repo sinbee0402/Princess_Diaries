@@ -5,16 +5,12 @@ class PostDb {
   final db = FirebaseFirestore.instance;
 
   Future<List<Post>> getPosts() async {
-    final posts = db.collection('Posts').snapshots();
-    // final posts = await db.collection('Posts').get().then(
-    //   (value) {
-    //     print("Successfully completed");
-    //     for (var docSnapshot in value.docs) {
-    //       print('${docSnapshot.id} => ${docSnapshot.data()}');
-    //     }
-    //   },
-    //   onError: (e) => print('Error completing: $e'),
-    // );
+    final _snapshot = await db.collection('Posts').get();
+    List<Post> posts = _snapshot.docs
+        .map(
+          (e) => Post.fromJson(e.data()),
+        )
+        .toList();
     return posts;
   }
 
