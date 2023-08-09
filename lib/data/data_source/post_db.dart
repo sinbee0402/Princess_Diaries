@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:injectable/injectable.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 
+@singleton
 class PostDb {
   final db = FirebaseFirestore.instance;
 

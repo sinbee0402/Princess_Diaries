@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/domain/use_case/use_cases.dart';
 import 'package:princess_diaries/presentation/main/main_state.dart';
 import 'package:princess_diaries/presentation/main/main_ui_event.dart';
 
+@injectable
 class MainViewModel with ChangeNotifier {
   final UseCases useCases;
 

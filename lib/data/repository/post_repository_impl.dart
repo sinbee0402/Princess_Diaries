@@ -1,7 +1,9 @@
+import 'package:injectable/injectable.dart';
 import 'package:princess_diaries/data/data_source/post_db.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/domain/repository/post_repository.dart';
 
+@Singleton(as: PostRepository)
 class PostRepositoryImpl implements PostRepository {
   PostDb db;
 
