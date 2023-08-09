@@ -11,8 +11,8 @@ class CurvedNavigationWidget extends StatefulWidget {
 }
 
 class _CurvedNavigationWidgetState extends State<CurvedNavigationWidget> {
-  int index = 0;
-  final screens = [
+  int _index = 0;
+  final _screens = [
     const MainScreen(),
     const TimeLineScreen(),
   ];
@@ -36,8 +36,8 @@ class _CurvedNavigationWidgetState extends State<CurvedNavigationWidget> {
             color: Colors.white,
           ),
         ],
-        index: index,
-        onTap: (index) => setState(() => this.index = index),
+        index: _index,
+        onTap: (index) => setState(() => this._index = index),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -49,7 +49,7 @@ class _CurvedNavigationWidgetState extends State<CurvedNavigationWidget> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: screens[index],
+      body: _screens[_index],
     );
   }
 }
