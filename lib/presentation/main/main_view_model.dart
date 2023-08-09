@@ -16,7 +16,8 @@ class MainViewModel with ChangeNotifier {
     switch (event) {
       case LoadPosts():
         _loadPosts;
-
+      case SavePost(:final id, :final title, :final content):
+        _savePost;
       case DeletePost():
         _deletePost;
     }
@@ -28,6 +29,29 @@ class MainViewModel with ChangeNotifier {
       posts: posts,
     );
     notifyListeners();
+  }
+
+  Future<void> _savePost(int? id, String title, String content) async {
+    if (id == null) {
+      await useCases.addPost(
+        Post(
+            emoji:
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Noto_Emoji_KitKat_263a.svg/220px-Noto_Emoji_KitKat_263a.svg.png',
+            date: DateTime.now(),
+            title: title,
+            content: content),
+      );
+    } else {
+      await useCases.updatePost(
+        Post(
+          emoji:
+              'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Noto_Emoji_KitKat_263a.svg/220px-Noto_Emoji_KitKat_263a.svg.png',
+          date: DateTime.now(),
+          title: title,
+          content: content,
+        ),
+      );
+    }
   }
 
   Future<void> _deletePost(Post post) async {
