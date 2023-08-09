@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:princess_diaries/presentation/components/curved_navigation_widget.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   initializeDateFormatting().then((_) => runApp(const MyApp()));
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class MyApp extends StatelessWidget {
