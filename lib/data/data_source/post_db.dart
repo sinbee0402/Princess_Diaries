@@ -1,51 +1,54 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:princess_diaries/domain/model/post.dart';
+import 'package:sqflite/sqflite.dart';
 
 @singleton
 class PostDb {
-  final db = FirebaseFirestore.instance;
+  Database db;
+
+  PostDb(this.db);
 
   Future<List<Post>> getPosts() async {
-    final _snapshot = await db.collection('Posts').get();
-    List<Post> posts = _snapshot.docs
-        .map(
-          (e) => Post.fromJson(e.data()),
-        )
-        .toList();
-    return posts;
+    // SELECT * FROM posts
+    final posts = await db.query('post');
+    return posts.map((e) => Post.fromJson(e)).toList();
   }
 
   Future<Post?> getPostById(int id) async {
-    final post = await db.collection('Posts').doc('$id');
-    post.get().then(
-      (value) {
-        final data = value.data() as Map<String, dynamic>;
-        return Post.fromJson(data);
-      },
-      onError: (e) => print('Error getting document: $e'),
+    // SELECT * FROM note WHERE id = $id
+    final posts = await db.query(
+      'post',
+      where: 'id = ?',
+      whereArgs: [id],
     );
+
+    if (posts.isNotEmpty) {
+      return Post.fromJson(posts.first);
+    }
+    return null;
   }
 
   Future<void> insertPost(Post post) async {
-    await db.collection('Posts').doc('${post.id}').set({
-      'emoji': post.emoji,
-      'date': post.date,
-      'title': post.title,
-      'content': post.content,
-    });
+    // INSERT INTO posts (id, emoji, date, title, content) VALUES (?, ?, ?, ?, ?)
+    await db.insert('post', post.toJson());
   }
 
   Future<void> deletetPost(Post post) async {
-    await db.collection('Posts').doc('${post.id}').delete();
+    // DELETE FROM posts WHERE id = ?
+    await db.delete(
+      'post',
+      where: 'id = ?',
+      whereArgs: [post.id],
+    );
   }
 
   Future<void> updateNote(Post post) async {
-    await db.collection('Posts').doc('${post.id}').update({
-      'emoji': post.emoji,
-      'date': post.date,
-      'title': post.title,
-      'content': post.content,
-    });
+    // UPDATE posts SET emoji = ?, date = ?, title = ?, content = ? WHERE id = ?
+    await db.update(
+      'post',
+      post.toJson(),
+      where: 'id = ?',
+      whereArgs: [post.id],
+    );
   }
 }
