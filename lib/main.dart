@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:princess_diaries/di/di_setup.dart';
 import 'package:princess_diaries/presentation/main/main_view_model.dart';
 import 'package:provider/provider.dart';
-import 'firebase_options.dart';
 
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:princess_diaries/presentation/components/curved_navigation_widget.dart';
@@ -14,10 +12,6 @@ void main() async {
   configureDependencies();
 
   initializeDateFormatting().then((_) => runApp(const MyApp()));
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 }
 
 class MyApp extends StatelessWidget {
