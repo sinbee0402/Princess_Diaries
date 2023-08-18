@@ -8,8 +8,6 @@ class TimeLineListItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.7,
-        height: MediaQuery.of(context).size.width * 0.3,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -53,7 +51,7 @@ class TimeLineListItem extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(width: 80),
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Container(
