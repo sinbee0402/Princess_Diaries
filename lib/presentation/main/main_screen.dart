@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:princess_diaries/presentation/components/custom_popup.dart';
+import 'package:princess_diaries/presentation/main/main_ui_event.dart';
+import 'package:princess_diaries/presentation/main/main_view_model.dart';
+import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class MainScreen extends StatefulWidget {
@@ -76,6 +79,8 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<MainViewModel>();
+
     return Scaffold(
       appBar: AppBar(
         //title: const Text('main page'),
@@ -181,7 +186,14 @@ class _MainScreenState extends State<MainScreen> {
                           size: 24,
                         ),
                         onPressed: () {
-                          _showPopup(context);
+                          viewModel.onEvent(
+                            const MainUiEvent.savePost(
+                              1,
+                              'first title',
+                              'first content',
+                            ),
+                          );
+                          // _showPopup(context);
                         },
                       ),
                     )
