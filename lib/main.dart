@@ -9,7 +9,7 @@ import 'package:princess_diaries/presentation/components/curved_navigation_widge
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
+  await configureDependencies();
 
   initializeDateFormatting().then((_) => runApp(const MyApp()));
 }
