@@ -4,19 +4,19 @@ import 'package:sqflite/sqflite.dart';
 
 @singleton
 class PostDb {
-  Database db;
+  Database _db;
 
-  PostDb(this.db);
+  PostDb(this._db);
 
   Future<List<Post>> getPosts() async {
     // SELECT * FROM posts
-    final posts = await db.query('post');
+    final posts = await _db.query('post');
     return posts.map((e) => Post.fromJson(e)).toList();
   }
 
   Future<Post?> getPostById(int id) async {
     // SELECT * FROM note WHERE id = $id
-    final posts = await db.query(
+    final posts = await _db.query(
       'post',
       where: 'id = ?',
       whereArgs: [id],
@@ -30,12 +30,12 @@ class PostDb {
 
   Future<void> insertPost(Post post) async {
     // INSERT INTO posts (id, emoji, date, title, content) VALUES (?, ?, ?, ?, ?)
-    await db.insert('post', post.toJson());
+    await _db.insert('post', post.toJson());
   }
 
   Future<void> deletetPost(Post post) async {
     // DELETE FROM posts WHERE id = ?
-    await db.delete(
+    await _db.delete(
       'post',
       where: 'id = ?',
       whereArgs: [post.id],
@@ -44,7 +44,7 @@ class PostDb {
 
   Future<void> updateNote(Post post) async {
     // UPDATE posts SET emoji = ?, date = ?, title = ?, content = ? WHERE id = ?
-    await db.update(
+    await _db.update(
       'post',
       post.toJson(),
       where: 'id = ?',

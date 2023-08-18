@@ -5,32 +5,32 @@ import 'package:princess_diaries/domain/repository/post_repository.dart';
 
 @Singleton(as: PostRepository)
 class PostRepositoryImpl implements PostRepository {
-  PostDb db;
+  PostDb _db;
 
-  PostRepositoryImpl(this.db);
+  PostRepositoryImpl(this._db);
 
   @override
   Future<List<Post>> getPosts() async {
-    return await db.getPosts();
+    return await _db.getPosts();
   }
 
   @override
   Future<Post?> getPostById(int id) async {
-    return await db.getPostById(id);
+    return await _db.getPostById(id);
   }
 
   @override
   Future<void> insertPost(Post post) async {
-    await db.insertPost(post);
+    await _db.insertPost(post);
   }
 
   @override
   Future<void> deletetPost(Post post) async {
-    await db.deletetPost(post);
+    await _db.deletetPost(post);
   }
 
   @override
   Future<void> updateNote(Post post) async {
-    await db.updateNote(post);
+    await _db.updateNote(post);
   }
 }

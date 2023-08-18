@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
 @module
-abstract class AppModule {
+abstract class Module {
   @preResolve
   Future<Database> get db => openDatabase(
         'posts_db',
