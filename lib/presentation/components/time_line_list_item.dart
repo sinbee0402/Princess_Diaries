@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:princess_diaries/domain/model/post.dart';
 
 class TimeLineListItem extends StatelessWidget {
-  const TimeLineListItem({Key? key}) : super(key: key);
+  final Post post;
+
+  const TimeLineListItem({
+    Key? key,
+    required this.post,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,26 +30,26 @@ class TimeLineListItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(width: 8),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '7월 13일 목요일',
-                    style: TextStyle(
+                    '${post.date}',
+                    style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
-                    'Don`t Say a Word',
-                    style: TextStyle(fontSize: 13),
+                    post.title,
+                    style: const TextStyle(fontSize: 13),
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   Text(
-                    'Ellie Goulding',
-                    style: TextStyle(
+                    post.content,
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
                     ),
