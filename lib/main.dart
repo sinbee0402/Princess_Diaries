@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:princess_diaries/core/router.dart';
 
 import 'package:princess_diaries/di/di_setup.dart';
-import 'package:princess_diaries/presentation/main/main_view_model.dart';
-import 'package:princess_diaries/presentation/time_line/time_line_view_model.dart';
-import 'package:provider/provider.dart';
 
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:princess_diaries/presentation/components/curved_navigation_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,20 +17,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
-      ),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider<MainViewModel>(
-              create: (_) => getIt<MainViewModel>()),
-          ChangeNotifierProvider<TimeLineViewModel>(
-              create: (_) => getIt<TimeLineViewModel>()),
-        ],
-        child: const CurvedNavigationWidget(),
       ),
     );
   }
