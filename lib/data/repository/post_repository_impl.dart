@@ -30,7 +30,7 @@ class PostRepositoryImpl implements PostRepository {
   }
 
   @override
-  Future<void> updateNote(Post post) async {
+  Future<void> updatePost(Post post) async {
     await _db.updateNote(post);
   }
 }

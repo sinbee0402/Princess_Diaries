@@ -9,6 +9,6 @@ class UpdatePostUseCase {
   UpdatePostUseCase(this._repository);
 
   Future<void> call(Post post) async {
-    await _repository.updateNote(post);
+    await _repository.updatePost(post);
   }
 }
