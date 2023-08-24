@@ -12,7 +12,8 @@ class AddEditPostViewModel with ChangeNotifier {
     switch (event) {
       //case ChangeBase(:final url):
 
-      case SavePost(:final id, :final title, :final content):
+      case SavePost():
+        _savePost;
     }
   }
 
