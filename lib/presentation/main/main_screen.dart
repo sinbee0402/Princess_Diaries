@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:princess_diaries/presentation/components/custom_popup.dart';
 import 'package:princess_diaries/presentation/main/main_ui_event.dart';
 import 'package:princess_diaries/presentation/main/main_view_model.dart';
 import 'package:provider/provider.dart';
@@ -68,15 +67,6 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  void _showPopup(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return CustomPopup(selectedDate: _selectedDay);
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<MainViewModel>();
@@ -99,6 +89,7 @@ class _MainScreenState extends State<MainScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TableCalendar(
               locale: 'ko_KR',
@@ -114,7 +105,6 @@ class _MainScreenState extends State<MainScreen> {
                   _selectedDay = selectedDay;
                   _focusedDay = focusedDay;
                 });
-                _showPopup(context);
               },
               onPageChanged: (focusedDay) {
                 _focusedDay = focusedDay;
@@ -170,37 +160,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
               daysOfWeekHeight: 24,
             ),
-            const SizedBox(height: 8),
-            Expanded(
-              child: Container(
-                color: Colors.grey[300],
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 4,
-                      right: 4,
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.add,
-                          color: Colors.black,
-                          size: 24,
-                        ),
-                        onPressed: () {
-                          viewModel.onEvent(
-                            const MainUiEvent.savePost(
-                              1,
-                              'first title',
-                              'first content',
-                            ),
-                          );
-                          // _showPopup(context);
-                        },
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )
+            const SizedBox(height: 80),
           ],
         ),
       ),
