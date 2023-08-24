@@ -7,7 +7,7 @@ import 'package:princess_diaries/presentation/time_line/time_line_ui_event.dart'
 class TimeLineViewModel with ChangeNotifier {
   final PostRepository _repository;
 
-  TimeLineState _state = TimeLineState();
+  TimeLineState _state = const TimeLineState();
   TimeLineState get state => _state;
 
   Post? _recentlyDeletedPost;

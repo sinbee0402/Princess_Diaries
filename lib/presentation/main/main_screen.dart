@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:princess_diaries/presentation/main/main_ui_event.dart';
 import 'package:princess_diaries/presentation/main/main_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
