@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:princess_diaries/presentation/main/main_screen.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_screen.dart';
 
@@ -40,7 +41,9 @@ class _CurvedNavigationWidgetState extends State<CurvedNavigationWidget> {
         onTap: (index) => setState(() => this._index = index),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          context.push('/add_post');
+        },
         backgroundColor: Colors.white,
         shape: const CircleBorder(),
         child: const Icon(
