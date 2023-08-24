@@ -21,7 +21,7 @@ final router = GoRouter(
       path: '/time_line',
       builder: (context, state) => ChangeNotifierProvider<TimeLineViewModel>(
         create: (_) => getIt<TimeLineViewModel>(),
-        child: const CurvedNavigationWidget(),
+        child: const TimeLineScreen(),
       ),
     ),
     //GoRoute(
