@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:princess_diaries/di/di_setup.dart';
 import 'package:princess_diaries/presentation/main/main_view_model.dart';
+import 'package:princess_diaries/presentation/time_line/time_line_view_model.dart';
 import 'package:provider/provider.dart';
 
 import 'package:intl/date_symbol_data_local.dart';
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider<MainViewModel>(
               create: (_) => getIt<MainViewModel>()),
+          ChangeNotifierProvider<TimeLineViewModel>(
+              create: (_) => getIt<TimeLineViewModel>()),
         ],
         child: const CurvedNavigationWidget(),
       ),

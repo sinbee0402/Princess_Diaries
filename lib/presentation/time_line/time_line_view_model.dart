@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/domain/repository/post_repository.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_state.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_ui_event.dart';
 
+@injectable
 class TimeLineViewModel with ChangeNotifier {
   final PostRepository _repository;
 
