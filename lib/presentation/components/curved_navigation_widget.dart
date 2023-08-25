@@ -1,8 +1,12 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:princess_diaries/di/di_setup.dart';
 import 'package:princess_diaries/presentation/main/main_screen.dart';
+import 'package:princess_diaries/presentation/main/main_view_model.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_screen.dart';
+import 'package:princess_diaries/presentation/time_line/time_line_view_model.dart';
+import 'package:provider/provider.dart';
 
 class CurvedNavigationWidget extends StatefulWidget {
   const CurvedNavigationWidget({Key? key}) : super(key: key);
@@ -13,10 +17,23 @@ class CurvedNavigationWidget extends StatefulWidget {
 
 class _CurvedNavigationWidgetState extends State<CurvedNavigationWidget> {
   int _index = 0;
-  final _screens = [
-    const MainScreen(),
-    const TimeLineScreen(),
-  ];
+  var _screens = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _screens = [
+      ChangeNotifierProvider(
+        create: (_) => getIt<MainViewModel>(),
+        child: const MainScreen(),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => getIt<TimeLineViewModel>(),
+        child: const TimeLineScreen(),
+      )
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {

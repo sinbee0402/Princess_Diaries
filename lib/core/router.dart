@@ -14,17 +14,7 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => ChangeNotifierProvider(
-        create: (_) => getIt<MainViewModel>(),
-        child: const CurvedNavigationWidget(),
-      ),
-    ),
-    GoRoute(
-      path: '/time_line',
-      builder: (context, state) => ChangeNotifierProvider<TimeLineViewModel>(
-        create: (_) => getIt<TimeLineViewModel>(),
-        child: const TimeLineScreen(),
-      ),
+      builder: (context, state) => const CurvedNavigationWidget(),
     ),
     GoRoute(
       path: '/add_post',
