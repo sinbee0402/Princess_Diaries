@@ -124,6 +124,7 @@ class _MainScreenState extends State<MainScreen> {
                 // rightChevronIcon: Icon(Icons.chevron_right),
               ),
               calendarStyle: CalendarStyle(
+                selectedTextStyle: const TextStyle(color: Colors.transparent),
                 selectedDecoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
@@ -131,6 +132,7 @@ class _MainScreenState extends State<MainScreen> {
                       fit: BoxFit.cover),
                   //color: Colors.pinkAccent,
                 ),
+
                 todayDecoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.transparent,
