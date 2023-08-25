@@ -127,7 +127,7 @@ class _MainScreenState extends State<MainScreen> {
                 selectedDecoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                      image: AssetImage('assets/crown-gb5a99fc9f_1280.png'),
+                      image: AssetImage('assets/icon-question-mark.png'),
                       fit: BoxFit.cover),
                   //color: Colors.pinkAccent,
                 ),
