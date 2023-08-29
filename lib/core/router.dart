@@ -3,9 +3,7 @@ import 'package:princess_diaries/di/di_setup.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_screen.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_view_model.dart';
 import 'package:princess_diaries/presentation/components/curved_navigation_widget.dart';
-import 'package:princess_diaries/presentation/main/main_view_model.dart';
-import 'package:princess_diaries/presentation/time_line/time_line_screen.dart';
-import 'package:princess_diaries/presentation/time_line/time_line_view_model.dart';
+import 'package:princess_diaries/presentation/setting/setting_screen.dart';
 import 'package:provider/provider.dart';
 
 // GoRouter configuration
@@ -22,6 +20,10 @@ final router = GoRouter(
         create: (_) => getIt<AddEditPostViewModel>(),
         child: const AddEditPostScreen(),
       ),
+    ),
+    GoRoute(
+      path: '/settings',
+      builder: (context, state) => const SettingScreen(),
     ),
     //     GoRoute(
     //       path: '/edit_post',
