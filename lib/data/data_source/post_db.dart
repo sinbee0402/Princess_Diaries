@@ -29,7 +29,7 @@ class PostDb {
   }
 
   Future<void> insertPost(Post post) async {
-    // INSERT INTO posts (id, emoji, date, title, content) VALUES (?, ?, ?, ?, ?)
+    // INSERT INTO posts (id, emoji, date, content) VALUES (?, ?, ?, ?, ?)
     await _db.insert('post', post.toJson());
   }
 
@@ -43,7 +43,7 @@ class PostDb {
   }
 
   Future<void> updateNote(Post post) async {
-    // UPDATE posts SET emoji = ?, date = ?, title = ?, content = ? WHERE id = ?
+    // UPDATE posts SET emoji = ?, date = ?, content = ? WHERE id = ?
     await _db.update(
       'post',
       post.toJson(),

@@ -9,7 +9,7 @@ abstract class Module {
         version: 1,
         onCreate: (db, version) async {
           await db.execute(
-            'CREATE TABLE post (id INTEGER PRIMARY KEY AUTOINCREMENT, emoji TEXT, date INTEGER, title TEXT, content TEXT)',
+            'CREATE TABLE post (id INTEGER PRIMARY KEY AUTOINCREMENT, emoji TEXT, date INTEGER, content TEXT)',
           );
         },
       );

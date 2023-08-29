@@ -11,7 +11,6 @@ class Post with _$Post {
     int? id,
     required String emoji,
     required DateTime date,
-    required String title,
     required String content,
   }) = _Post;
 

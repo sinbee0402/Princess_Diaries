@@ -8,7 +8,6 @@ sealed class AddEditPostEvent<T> with _$AddEditPostEvent<T> {
   //const factory AddEditPostEvent.changeBase(String url) = ChangeBase;
   const factory AddEditPostEvent.savePost(
     int? id,
-    String title,
     String content,
   ) = SavePost;
 }

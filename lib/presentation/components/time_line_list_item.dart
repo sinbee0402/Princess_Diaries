@@ -42,10 +42,6 @@ class TimeLineListItem extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    post.title,
-                    style: const TextStyle(fontSize: 13),
-                  ),
                   const SizedBox(height: 40),
                   Text(
                     post.content,

@@ -17,7 +17,7 @@ class AddEditPostViewModel with ChangeNotifier {
     }
   }
 
-  Future<void> _savePost(int? id, String title, String content) async {
+  Future<void> _savePost(int? id, String content) async {
     if (id == null) {
       await repository.insertPost(
         Post(
@@ -25,7 +25,6 @@ class AddEditPostViewModel with ChangeNotifier {
             emoji:
                 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Noto_Emoji_KitKat_263a.svg/220px-Noto_Emoji_KitKat_263a.svg.png',
             date: DateTime.now(),
-            title: title,
             content: content),
       );
     } else {
@@ -34,7 +33,6 @@ class AddEditPostViewModel with ChangeNotifier {
           emoji:
               'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Noto_Emoji_KitKat_263a.svg/220px-Noto_Emoji_KitKat_263a.svg.png',
           date: DateTime.now(),
-          title: title,
           content: content,
         ),
       );
