@@ -6,7 +6,7 @@ class EmojiPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white.withOpacity(0.7),
       title: const Text(
         '감정을 선택해주세요!',
         style: TextStyle(
