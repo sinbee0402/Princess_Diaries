@@ -22,6 +22,8 @@ class SettingScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           SettingsList(
+            lightTheme:
+                const SettingsThemeData(settingsListBackground: Colors.white),
             shrinkWrap: true,
             sections: [
               SettingsSection(
