@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_event.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_view_model.dart';
@@ -53,6 +54,7 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
               _contentController.text,
             ),
           );
+          context.pop();
         },
         backgroundColor: Colors.black,
         child: const Icon(
