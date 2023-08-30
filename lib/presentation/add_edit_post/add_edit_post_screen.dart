@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:princess_diaries/domain/model/post.dart';
+import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_event.dart';
+import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_view_model.dart';
 import 'package:princess_diaries/presentation/components/emoji_popup.dart';
+import 'package:provider/provider.dart';
 
 class AddEditPostScreen extends StatefulWidget {
   final Post? post;
@@ -35,10 +38,22 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<AddEditPostViewModel>();
+
     return Scaffold(
       appBar: AppBar(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          viewModel.onEvent(
+            AddEditPostEvent.savePost(
+              widget.post == null ? null : widget.post!.id,
+              _selectedEmoji == null
+                  ? 'assets/icon-question-mark.png'
+                  : _selectedEmoji!,
+              _contentController.text,
+            ),
+          );
+        },
         backgroundColor: Colors.black,
         child: const Icon(
           Icons.save,
