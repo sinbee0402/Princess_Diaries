@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:princess_diaries/domain/model/post.dart';
+import 'package:princess_diaries/presentation/components/emoji_popup.dart';
 
 class AddEditPostScreen extends StatefulWidget {
   final Post? post;
@@ -14,14 +15,28 @@ class AddEditPostScreen extends StatefulWidget {
 }
 
 class _AddEditPostScreenState extends State<AddEditPostScreen> {
+  String? _selectedEmoji;
   final _contentController = TextEditingController();
+
+  void _showPopup(BuildContext context) async {
+    final selectedValue = await showDialog(
+      context: context,
+      builder: (context) {
+        return const EmojiPopup();
+      },
+    );
+
+    if (selectedValue != null) {
+      setState(() {
+        _selectedEmoji = selectedValue;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          // title: Text('${widget.post!.date}'),
-          ),
+      appBar: AppBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: Colors.black,
@@ -37,13 +52,23 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
           color: Colors.grey,
           height: double.infinity,
           child: Stack(
+            alignment: Alignment.center,
             children: [
-              // Positioned(
-              //   child: Image.network(
-              //     widget.post!.emoji,
-              //     fit: BoxFit.cover,
-              //   ),
-              // ),
+              Positioned(
+                top: 32,
+                child: InkWell(
+                  onTap: () {
+                    _showPopup(context);
+                  },
+                  child: Image.asset(
+                    _selectedEmoji != null
+                        ? _selectedEmoji!
+                        : 'assets/icon-question-mark.png',
+                    fit: BoxFit.fill,
+                    width: 100,
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(
                     top: 160, left: 28, right: 28, bottom: 32),

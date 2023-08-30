@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class EmojiPopup extends StatelessWidget {
   const EmojiPopup({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class EmojiPopup extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  print('알 수 없음');
+                  context.pop('assets/icon-question-mark.png');
                 },
                 child: Image.asset(
                   'assets/icon-question-mark.png',
@@ -31,7 +32,7 @@ class EmojiPopup extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  print('슬픔, 우울');
+                  context.pop('assets/princess/princess_1.png');
                 },
                 child: Image.asset(
                   'assets/princess/princess_1.png',
@@ -41,7 +42,7 @@ class EmojiPopup extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  print('행복, 기쁨');
+                  context.pop('assets/princess/princess_2.png');
                 },
                 child: Image.asset(
                   'assets/princess/princess_2.png',
@@ -56,7 +57,7 @@ class EmojiPopup extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  print('화남, 짜증');
+                  context.pop('assets/princess/princess_3.png');
                 },
                 child: Image.asset(
                   'assets/princess/princess_3.png',
@@ -66,7 +67,7 @@ class EmojiPopup extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  print('놀람, 깨달음');
+                  context.pop('assets/princess/princess_4.png');
                 },
                 child: Image.asset(
                   'assets/princess/princess_4.png',
@@ -76,7 +77,7 @@ class EmojiPopup extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  print('그저 그럼, 차분');
+                  context.pop('assets/princess/princess_5.png');
                 },
                 child: Image.asset(
                   'assets/princess/princess_5.png',
