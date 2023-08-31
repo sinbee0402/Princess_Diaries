@@ -8,7 +8,7 @@ abstract interface class PostRepository {
   // 포스트 추가하기
   Future<void> insertPost(Post post);
   // 포스트 삭제하기
-  Future<void> deletetPost(Post post);
+  Future<void> deletePost(Post post);
   // 포스트 수정하기
   Future<void> updatePost(Post post);
 }

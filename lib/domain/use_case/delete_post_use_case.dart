@@ -9,6 +9,6 @@ class DeletePostUseCase {
   DeletePostUseCase(this._repository);
 
   Future<void> call(Post post) async {
-    await _repository.deletetPost(post);
+    await _repository.deletePost(post);
   }
 }

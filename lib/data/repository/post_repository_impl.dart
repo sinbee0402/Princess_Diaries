@@ -25,8 +25,8 @@ class PostRepositoryImpl implements PostRepository {
   }
 
   @override
-  Future<void> deletetPost(Post post) async {
-    await _db.deletetPost(post);
+  Future<void> deletePost(Post post) async {
+    await _db.deletePost(post);
   }
 
   @override

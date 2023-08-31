@@ -33,7 +33,7 @@ class PostDb {
     await _db.insert('post', post.toJson());
   }
 
-  Future<void> deletetPost(Post post) async {
+  Future<void> deletePost(Post post) async {
     // DELETE FROM posts WHERE id = ?
     await _db.delete(
       'post',

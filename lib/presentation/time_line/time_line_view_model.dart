@@ -36,7 +36,7 @@ class TimeLineViewModel with ChangeNotifier {
   }
 
   Future<void> _deletePost(Post post) async {
-    await _repository.deletetPost(post);
+    await _repository.deletePost(post);
     _recentlyDeletedPost = post;
 
     await _loadPosts();
