@@ -56,9 +56,12 @@ class TimeLineListItem extends StatelessWidget {
             const Spacer(),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Container(
+              child: SizedBox(
                 width: 100,
-                color: Colors.grey,
+                child: Image.asset(
+                  post.emoji,
+                  fit: BoxFit.cover,
+                ),
               ),
             )
           ],
