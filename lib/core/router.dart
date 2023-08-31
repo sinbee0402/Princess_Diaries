@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:princess_diaries/di/di_setup.dart';
+import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_screen.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_view_model.dart';
 import 'package:princess_diaries/presentation/components/curved_navigation_widget.dart';
@@ -22,15 +23,15 @@ final router = GoRouter(
       ),
     ),
     GoRoute(
+      path: '/edit_post',
+      builder: (context, state) => ChangeNotifierProvider(
+        create: (_) => getIt<AddEditPostViewModel>(),
+        child: AddEditPostScreen(post: state.extra! as Post),
+      ),
+    ),
+    GoRoute(
       path: '/settings',
       builder: (context, state) => const SettingScreen(),
     ),
-    //     GoRoute(
-    //       path: '/edit_post',
-    //       builder: (context, state) => ChangeNotifierProvider(
-    //         create: (_) => getIt<AddEditPostViewModel>(),
-    //         child: AddEditPostScreen(post: state.extra! as Post),
-    //       ),
-    //     ),
   ],
 );
