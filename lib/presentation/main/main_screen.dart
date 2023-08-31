@@ -73,11 +73,12 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        //title: const Text('main page'),
         actions: [
           IconButton(
             icon: const Icon(Icons.share),
-            onPressed: () {},
+            onPressed: () {
+              // TODO : 공유 기능
+            },
           ),
           IconButton(
             icon: const Icon(Icons.settings),
@@ -89,83 +90,85 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TableCalendar(
-              locale: 'ko_KR',
-              calendarFormat: _calendarFormat,
-              firstDay: _firstDay,
-              lastDay: _lastDay,
-              focusedDay: _focusedDay,
-              selectedDayPredicate: (day) {
-                return isSameDay(_selectedDay, day);
-              },
-              onDaySelected: (selectedDay, focusedDay) {
-                setState(() {
-                  _selectedDay = selectedDay;
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TableCalendar(
+                locale: 'ko_KR',
+                calendarFormat: _calendarFormat,
+                firstDay: _firstDay,
+                lastDay: _lastDay,
+                focusedDay: _focusedDay,
+                selectedDayPredicate: (day) {
+                  return isSameDay(_selectedDay, day);
+                },
+                onDaySelected: (selectedDay, focusedDay) {
+                  setState(() {
+                    _selectedDay = selectedDay;
+                    _focusedDay = focusedDay;
+                  });
+                },
+                onPageChanged: (focusedDay) {
                   _focusedDay = focusedDay;
-                });
-              },
-              onPageChanged: (focusedDay) {
-                _focusedDay = focusedDay;
-              },
-              headerStyle: HeaderStyle(
-                titleCentered: true,
-                titleTextFormatter: (date, locale) =>
-                    DateFormat.MMMM(locale).format(date),
-                formatButtonVisible: false,
-                headerPadding: const EdgeInsets.symmetric(vertical: 16),
-                titleTextStyle: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-                leftChevronVisible: false,
-                rightChevronVisible: false,
-                // leftChevronIcon: Icon(Icons.chevron_left),
-                // rightChevronIcon: Icon(Icons.chevron_right),
-              ),
-              calendarStyle: CalendarStyle(
-                selectedTextStyle: const TextStyle(color: Colors.transparent),
-                selectedDecoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: AssetImage('assets/icon-question-mark.png'),
-                      fit: BoxFit.cover),
-                  //color: Colors.pinkAccent,
-                ),
-
-                todayDecoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.transparent,
-                  border: Border.all(
-                    color: Colors.pinkAccent,
-                    width: 2,
+                },
+                headerStyle: HeaderStyle(
+                  titleCentered: true,
+                  titleTextFormatter: (date, locale) =>
+                      DateFormat.MMMM(locale).format(date),
+                  formatButtonVisible: false,
+                  headerPadding: const EdgeInsets.symmetric(vertical: 16),
+                  titleTextStyle: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
+                  leftChevronVisible: false,
+                  rightChevronVisible: false,
+                  // leftChevronIcon: Icon(Icons.chevron_left),
+                  // rightChevronIcon: Icon(Icons.chevron_right),
                 ),
-                todayTextStyle: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+                calendarStyle: CalendarStyle(
+                  selectedTextStyle: const TextStyle(color: Colors.transparent),
+                  selectedDecoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: AssetImage('assets/icon-question-mark.png'),
+                        fit: BoxFit.cover),
+                    //color: Colors.pinkAccent,
+                  ),
+
+                  todayDecoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.transparent,
+                    border: Border.all(
+                      color: Colors.pinkAccent,
+                      width: 2,
+                    ),
+                  ),
+                  todayTextStyle: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  // weekendTextStyle: const TextStyle(color: Colors.red),
+                  holidayTextStyle: const TextStyle(color: Colors.red),
                 ),
-                // weekendTextStyle: const TextStyle(color: Colors.red),
-                holidayTextStyle: const TextStyle(color: Colors.red),
+                calendarBuilders: CalendarBuilders(
+                  dowBuilder: (_, weekday) {
+                    return _buildDowWidget(weekday);
+                  },
+                  defaultBuilder: (_, date, focusedDay) {
+                    return _buildDayWidget(date);
+                  },
+                ),
+                daysOfWeekStyle: const DaysOfWeekStyle(
+                  weekendStyle: TextStyle(color: Colors.red),
+                ),
+                daysOfWeekHeight: 24,
               ),
-              calendarBuilders: CalendarBuilders(
-                dowBuilder: (_, weekday) {
-                  return _buildDowWidget(weekday);
-                },
-                defaultBuilder: (_, date, focusedDay) {
-                  return _buildDayWidget(date);
-                },
-              ),
-              daysOfWeekStyle: const DaysOfWeekStyle(
-                weekendStyle: TextStyle(color: Colors.red),
-              ),
-              daysOfWeekHeight: 24,
-            ),
-            const SizedBox(height: 80),
-          ],
+              const SizedBox(height: 80),
+            ],
+          ),
+          // const SizedBox(height: 80),
         ),
       ),
     );
