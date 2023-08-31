@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:princess_diaries/presentation/components/time_line_calendar_header.dart';
 import 'package:princess_diaries/presentation/components/time_line_list_item.dart';
+import 'package:princess_diaries/presentation/time_line/time_line_ui_event.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -41,12 +44,34 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: state.posts.length,
-        itemBuilder: (context, index) {
-          return TimeLineListItem(post: state.posts[index]);
-        },
-      ),
+      body: state.posts.isEmpty
+          ? Container()
+          : ListView(
+              children: [
+                ...state.posts
+                    .map(
+                      (post) => InkWell(
+                        // TODO : 삭제 후 복구 기능 추가
+                        onTap: () async {
+                          final uri = Uri(
+                            path: '/edit_post',
+                            queryParameters: {
+                              'post': jsonEncode(post.toJson())
+                            },
+                          );
+                          bool? isSaved = await context.push(uri.toString());
+
+                          if (isSaved != null && isSaved) {
+                            viewModel
+                                .onEvent(const TimeLineUiEvent.loadPosts());
+                          }
+                        },
+                        child: TimeLineListItem(post: post),
+                      ),
+                    )
+                    .toList(),
+              ],
+            ),
     );
   }
 }
