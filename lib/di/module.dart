@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 abstract class Module {
   @preResolve
   Future<Database> get db => openDatabase(
-        'posts_db',
+        'posts_db.db',
         version: 1,
         onCreate: (db, version) async {
           await db.execute(
