@@ -37,7 +37,9 @@ class SettingScreen extends StatelessWidget {
                       Icons.login_outlined,
                       color: Colors.black,
                     ),
-                    onPressed: (context) {},
+                    onPressed: (context) {
+                      // TODO : Google Drive 연동 기능
+                    },
                   ),
                 ],
               ),
@@ -56,7 +58,9 @@ class SettingScreen extends StatelessWidget {
                       Icons.file_upload_outlined,
                       color: Colors.black,
                     ),
-                    onPressed: (context) {},
+                    onPressed: (context) {
+                      // TODO : 데이터 백업 기능
+                    },
                   ),
                   SettingsTile.navigation(
                     title: const Text(
@@ -67,7 +71,9 @@ class SettingScreen extends StatelessWidget {
                       Icons.save_alt_outlined,
                       color: Colors.black,
                     ),
-                    onPressed: (context) {},
+                    onPressed: (context) {
+                      // TODO : 데이터 복원 기능
+                    },
                   ),
                 ],
               ),
