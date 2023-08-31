@@ -6,9 +6,9 @@ import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_event.
 
 @injectable
 class AddEditPostViewModel with ChangeNotifier {
-  final PostRepository repository;
+  final PostRepository _repository;
 
-  AddEditPostViewModel(this.repository);
+  AddEditPostViewModel(this._repository);
 
   void onEvent(AddEditPostEvent event) {
     switch (event) {
@@ -21,17 +21,17 @@ class AddEditPostViewModel with ChangeNotifier {
 
   Future<void> _savePost(int? id, String emoji, String content) async {
     if (id == null) {
-      await repository.insertPost(
+      await _repository.insertPost(
         Post(
-          id: id,
           emoji: emoji,
           date: DateTime.now(),
           content: content,
         ),
       );
     } else {
-      await repository.updatePost(
+      await _repository.updatePost(
         Post(
+          id: id,
           emoji: emoji,
           date: DateTime.now(),
           content: content,
