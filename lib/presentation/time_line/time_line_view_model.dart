@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:princess_diaries/domain/model/post.dart';
-import 'package:princess_diaries/domain/repository/post_repository.dart';
+import 'package:princess_diaries/domain/use_case/use_cases.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_state.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_ui_event.dart';
 
 @injectable
 class TimeLineViewModel with ChangeNotifier {
-  final PostRepository _repository;
+  final UseCases useCases;
 
   TimeLineState _state = const TimeLineState();
   TimeLineState get state => _state;
 
   Post? _recentlyDeletedPost;
 
-  TimeLineViewModel(this._repository);
+  TimeLineViewModel(this.useCases) {
+    _loadPosts;
+  }
 
   void onEvent(TimeLineUiEvent event) {
     switch (event) {
@@ -28,7 +30,7 @@ class TimeLineViewModel with ChangeNotifier {
   }
 
   Future<void> _loadPosts() async {
-    List<Post> posts = await _repository.getPosts();
+    List<Post> posts = await useCases.getPosts();
     _state = state.copyWith(
       posts: posts,
     );
@@ -36,7 +38,7 @@ class TimeLineViewModel with ChangeNotifier {
   }
 
   Future<void> _deletePost(Post post) async {
-    await _repository.deletePost(post);
+    await useCases.deletePost(post);
     _recentlyDeletedPost = post;
 
     await _loadPosts();
@@ -44,7 +46,7 @@ class TimeLineViewModel with ChangeNotifier {
 
   Future<void> _restorePost() async {
     if (_recentlyDeletedPost != null) {
-      await _repository.insertPost(_recentlyDeletedPost!);
+      await useCases.addPost(_recentlyDeletedPost!);
       _recentlyDeletedPost = null;
 
       _loadPosts();
