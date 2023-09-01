@@ -38,6 +38,12 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
   }
 
   @override
+  void dispose() {
+    _contentController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<AddEditPostViewModel>();
 
