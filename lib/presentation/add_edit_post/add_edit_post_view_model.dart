@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:princess_diaries/domain/model/post.dart';
-import 'package:princess_diaries/domain/repository/post_repository.dart';
+import 'package:princess_diaries/domain/use_case/use_cases.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_event.dart';
 
 @injectable
 class AddEditPostViewModel with ChangeNotifier {
-  final PostRepository _repository;
+  final UseCases _useCases;
 
-  AddEditPostViewModel(this._repository);
+  AddEditPostViewModel(this._useCases);
 
   void onEvent(AddEditPostEvent event) {
     switch (event) {
@@ -21,7 +21,7 @@ class AddEditPostViewModel with ChangeNotifier {
 
   Future<void> _savePost(int? id, String emoji, String content) async {
     if (id == null) {
-      await _repository.insertPost(
+      await _useCases.addPost(
         Post(
           emoji: emoji,
           date: DateTime.now().millisecondsSinceEpoch,
@@ -29,7 +29,7 @@ class AddEditPostViewModel with ChangeNotifier {
         ),
       );
     } else {
-      await _repository.updatePost(
+      await _useCases.addPost(
         Post(
           id: id,
           emoji: emoji,
