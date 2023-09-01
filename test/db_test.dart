@@ -15,7 +15,7 @@ void main() {
     await postDb.insertPost(Post(
       id: 1,
       emoji: 'test1',
-      date: DateTime.now(),
+      date: DateTime.now().millisecondsSinceEpoch,
       content: 'test1',
     ));
     // insert 테스트

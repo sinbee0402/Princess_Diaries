@@ -24,7 +24,7 @@ class AddEditPostViewModel with ChangeNotifier {
       await _repository.insertPost(
         Post(
           emoji: emoji,
-          date: DateTime.now(),
+          date: DateTime.now().millisecondsSinceEpoch,
           content: content,
         ),
       );
@@ -33,7 +33,7 @@ class AddEditPostViewModel with ChangeNotifier {
         Post(
           id: id,
           emoji: emoji,
-          date: DateTime.now(),
+          date: DateTime.now().millisecondsSinceEpoch,
           content: content,
         ),
       );

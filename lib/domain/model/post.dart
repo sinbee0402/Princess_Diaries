@@ -10,7 +10,7 @@ class Post with _$Post {
   const factory Post({
     int? id,
     required String emoji,
-    required DateTime date,
+    required int date,
     required String content,
   }) = _Post;
 
