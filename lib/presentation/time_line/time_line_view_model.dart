@@ -15,13 +15,13 @@ class TimeLineViewModel with ChangeNotifier {
   Post? _recentlyDeletedPost;
 
   TimeLineViewModel(this.useCases) {
-    _loadPosts;
+    _loadPosts();
   }
 
   void onEvent(TimeLineUiEvent event) {
     switch (event) {
       case LoadPosts():
-        _loadPosts;
+        _loadPosts();
       case DeletePost():
         _deletePost;
       case RestorePost():

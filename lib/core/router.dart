@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:go_router/go_router.dart';
 import 'package:princess_diaries/di/di_setup.dart';
 import 'package:princess_diaries/domain/model/post.dart';
@@ -24,10 +26,14 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/edit_post',
-      builder: (context, state) => ChangeNotifierProvider(
-        create: (_) => getIt<AddEditPostViewModel>(),
-        child: AddEditPostScreen(post: state.extra! as Post),
-      ),
+      builder: (context, state) {
+        final post = Post.fromJson(jsonDecode(state.pathParameters['post']!));
+
+        return ChangeNotifierProvider(
+          create: (_) => getIt<AddEditPostViewModel>(),
+          child: AddEditPostScreen(post: post),
+        );
+      },
     ),
     GoRoute(
       path: '/settings',

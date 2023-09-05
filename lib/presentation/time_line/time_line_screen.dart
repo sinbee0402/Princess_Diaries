@@ -44,34 +44,29 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
           ),
         ],
       ),
-      body: state.posts.isEmpty
-          ? Container()
-          : ListView(
-              children: [
-                ...state.posts
-                    .map(
-                      (post) => InkWell(
-                        // TODO : 삭제 후 복구 기능 추가
-                        onTap: () async {
-                          final uri = Uri(
-                            path: '/edit_post',
-                            queryParameters: {
-                              'post': jsonEncode(post.toJson())
-                            },
-                          );
-                          bool? isSaved = await context.push(uri.toString());
+      body: ListView(
+        children: [
+          ...state.posts
+              .map(
+                (post) => InkWell(
+                  // TODO : 삭제 후 복구 기능 추가
+                  onTap: () async {
+                    final uri = Uri(
+                      path: '/edit_post',
+                      queryParameters: {'post': jsonEncode(post.toJson())},
+                    );
+                    bool? isSaved = await context.push(uri.toString());
 
-                          if (isSaved != null && isSaved) {
-                            viewModel
-                                .onEvent(const TimeLineUiEvent.loadPosts());
-                          }
-                        },
-                        child: TimeLineListItem(post: post),
-                      ),
-                    )
-                    .toList(),
-              ],
-            ),
+                    if (isSaved != null && isSaved) {
+                      viewModel.onEvent(const TimeLineUiEvent.loadPosts());
+                    }
+                  },
+                  child: TimeLineListItem(post: post),
+                ),
+              )
+              .toList(),
+        ],
+      ),
     );
   }
 }
