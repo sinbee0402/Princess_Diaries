@@ -59,10 +59,12 @@ class SettingsScreen extends StatelessWidget {
                       Icons.alarm,
                       color: Colors.black,
                     ),
+                    activeSwitchColor: Colors.transparent,
                     initialValue: true,
                     onPressed: (context) {
                       // TODO : 알림 시간 설정
                     },
+                    description: const Text('시간'),
                     onToggle: (value) {
                       // TODO : 알림 on / off
                     },
