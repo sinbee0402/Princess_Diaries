@@ -1,48 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:settings_ui/settings_ui.dart';
 
-class SettingScreen extends StatelessWidget {
-  const SettingScreen({Key? key}) : super(key: key);
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('백업/복원'),
+        title: const Text('설정'),
       ),
       body: Column(
         children: [
-          const SizedBox(height: 8),
-          const Padding(
-            padding: EdgeInsets.all(12.0),
-            child: Text(
-              'Google Drive에 데이터를 수동으로 백업하여 핸드폰이 바뀌어도 간편하게 복구할 수 있습니다. \n주기적으로 백업해야 데이터를 안전하게 보관할 수 있습니다.',
-              style: TextStyle(color: Colors.grey),
-            ),
-          ),
           const SizedBox(height: 16),
           SettingsList(
             lightTheme:
                 const SettingsThemeData(settingsListBackground: Colors.white),
             shrinkWrap: true,
             sections: [
-              SettingsSection(
-                tiles: [
-                  SettingsTile.navigation(
-                    title: const Text(
-                      'Google Drive 연동',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    leading: const Icon(
-                      Icons.login_outlined,
-                      color: Colors.black,
-                    ),
-                    onPressed: (context) {
-                      // TODO : Google Drive 연동 기능
-                    },
-                  ),
-                ],
-              ),
               SettingsSection(
                 title: const Text(
                   '데이터 백업/복원',
@@ -51,28 +27,57 @@ class SettingScreen extends StatelessWidget {
                 tiles: [
                   SettingsTile.navigation(
                     title: const Text(
-                      '데이터 백업',
+                      '백업/복원',
                       style: TextStyle(color: Colors.black),
                     ),
                     leading: const Icon(
-                      Icons.file_upload_outlined,
+                      Icons.cloud_done_outlined,
                       color: Colors.black,
                     ),
+                    trailing: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Colors.grey,
+                    ),
                     onPressed: (context) {
-                      // TODO : 데이터 백업 기능
+                      context.push('/setting_data');
+                    },
+                  ),
+                ],
+              ),
+              SettingsSection(
+                title: const Text(
+                  '기타 설정',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                tiles: [
+                  SettingsTile.switchTile(
+                    title: const Text(
+                      '알림 설정',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    leading: const Icon(
+                      Icons.alarm,
+                      color: Colors.black,
+                    ),
+                    initialValue: true,
+                    onPressed: (context) {
+                      // TODO : 알림 시간 설정
+                    },
+                    onToggle: (value) {
+                      // TODO : 알림 on / off
                     },
                   ),
                   SettingsTile.navigation(
                     title: const Text(
-                      '데이터 복원',
+                      '테마 선택',
                       style: TextStyle(color: Colors.black),
                     ),
                     leading: const Icon(
-                      Icons.save_alt_outlined,
+                      Icons.palette_outlined,
                       color: Colors.black,
                     ),
                     onPressed: (context) {
-                      // TODO : 데이터 복원 기능
+                      // TODO : 테마 선택 AlertDialog
                     },
                   ),
                 ],

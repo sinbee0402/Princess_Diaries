@@ -6,7 +6,8 @@ import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_screen.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_view_model.dart';
 import 'package:princess_diaries/presentation/components/curved_navigation_widget.dart';
-import 'package:princess_diaries/presentation/setting/setting_screen.dart';
+import 'package:princess_diaries/presentation/settings/setting_data_screen.dart';
+import 'package:princess_diaries/presentation/settings/settings_screen.dart';
 import 'package:provider/provider.dart';
 
 // GoRouter configuration
@@ -37,7 +38,11 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/settings',
-      builder: (context, state) => const SettingScreen(),
+      builder: (context, state) => const SettingsScreen(),
+    ),
+    GoRoute(
+      path: '/setting_data',
+      builder: (context, state) => const SettingDataScreen(),
     ),
   ],
 );
