@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,7 +24,7 @@ class SettingThemeDialog extends StatelessWidget {
                   print('princess theme');
                 },
                 child: Image.asset(
-                  'assets/princess/princess_5.png',
+                  'assets/princess/5.png',
                   // 'assets/princess/princess_2.png',
                   fit: BoxFit.cover,
                   width: 80,
@@ -38,7 +36,7 @@ class SettingThemeDialog extends StatelessWidget {
                   print('butler theme');
                 },
                 child: Image.asset(
-                  'assets/butler/butler_1.png',
+                  'assets/butler/1.png',
                   // 'assets/butler/butler_3.png',
                   fit: BoxFit.cover,
                   width: 80,
@@ -50,7 +48,7 @@ class SettingThemeDialog extends StatelessWidget {
                   print('maid theme');
                 },
                 child: Image.asset(
-                  'assets/maid/maid_5.png',
+                  'assets/maid/5.png',
                   fit: BoxFit.cover,
                   width: 80,
                 ),

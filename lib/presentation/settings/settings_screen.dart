@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:princess_diaries/presentation/settings/setting_theme_dialog.dart';
 import 'package:settings_ui/settings_ui.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  void _showPopup(BuildContext context) async {
+    final selectedValue = await showDialog(
+      context: context,
+      builder: (context) {
+        return const SettingThemeDialog();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +94,7 @@ class SettingsScreen extends StatelessWidget {
                       color: Colors.black,
                     ),
                     onPressed: (context) {
-                      // TODO : 테마 선택 AlertDialog
+                      _showPopup(context);
                     },
                   ),
                 ],
