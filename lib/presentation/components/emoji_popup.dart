@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class EmojiPopup extends StatelessWidget {
-  const EmojiPopup({Key? key}) : super(key: key);
+class EmojiPopup extends StatefulWidget {
+  final String emojiTheme;
 
+  const EmojiPopup({
+    Key? key,
+    required this.emojiTheme,
+  }) : super(key: key);
+
+  @override
+  State<EmojiPopup> createState() => _EmojiPopupState();
+}
+
+class _EmojiPopupState extends State<EmojiPopup> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -32,20 +42,20 @@ class EmojiPopup extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  context.pop('assets/princess/princess_1.png');
+                  context.pop('${widget.emojiTheme}/1.png');
                 },
                 child: Image.asset(
-                  'assets/princess/princess_1.png',
+                  '${widget.emojiTheme}/1.png',
                   fit: BoxFit.fill,
                   width: 80,
                 ),
               ),
               InkWell(
                 onTap: () {
-                  context.pop('assets/princess/princess_2.png');
+                  context.pop('${widget.emojiTheme}/2.png');
                 },
                 child: Image.asset(
-                  'assets/princess/princess_2.png',
+                  '${widget.emojiTheme}/2.png',
                   fit: BoxFit.fill,
                   width: 80,
                 ),
@@ -57,30 +67,30 @@ class EmojiPopup extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  context.pop('assets/princess/princess_3.png');
+                  context.pop('${widget.emojiTheme}/3.png');
                 },
                 child: Image.asset(
-                  'assets/princess/princess_3.png',
+                  '${widget.emojiTheme}/3.png',
                   fit: BoxFit.fill,
                   width: 80,
                 ),
               ),
               InkWell(
                 onTap: () {
-                  context.pop('assets/princess/princess_4.png');
+                  context.pop('${widget.emojiTheme}/4.png');
                 },
                 child: Image.asset(
-                  'assets/princess/princess_4.png',
+                  '${widget.emojiTheme}/4.png',
                   fit: BoxFit.fill,
                   width: 80,
                 ),
               ),
               InkWell(
                 onTap: () {
-                  context.pop('assets/princess/princess_5.png');
+                  context.pop('${widget.emojiTheme}/5.png');
                 },
                 child: Image.asset(
-                  'assets/princess/princess_5.png',
+                  '${widget.emojiTheme}/5.png',
                   fit: BoxFit.fill,
                   width: 80,
                 ),

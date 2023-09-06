@@ -4,6 +4,7 @@ import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_event.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_view_model.dart';
 import 'package:princess_diaries/presentation/components/emoji_popup.dart';
+import 'package:princess_diaries/presentation/settings/setting_theme_top_level.dart';
 import 'package:provider/provider.dart';
 
 class AddEditPostScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
     final selectedValue = await showDialog(
       context: context,
       builder: (context) {
-        return const EmojiPopup();
+        return EmojiPopup(emojiTheme: theme);
       },
     );
 
