@@ -4,7 +4,7 @@ import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_screen.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_view_model.dart';
 import 'package:princess_diaries/presentation/components/curved_navigation_widget.dart';
-import 'package:princess_diaries/presentation/settings/setting_data_screen.dart';
+import 'package:princess_diaries/presentation/settings/data_backup/setting_data_screen.dart';
 import 'package:princess_diaries/presentation/settings/settings_screen.dart';
 import 'package:provider/provider.dart';
 

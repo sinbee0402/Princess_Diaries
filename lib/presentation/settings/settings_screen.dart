@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:princess_diaries/presentation/settings/setting_theme_dialog.dart';
-import 'package:princess_diaries/presentation/settings/setting_theme_top_level.dart';
+import 'package:princess_diaries/presentation/settings/theme/setting_theme_dialog.dart';
+import 'package:princess_diaries/presentation/settings/theme/setting_theme_top_level.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 class SettingsScreen extends StatefulWidget {

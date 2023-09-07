@@ -7,7 +7,7 @@ import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_event.
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_ui_event.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_view_model.dart';
 import 'package:princess_diaries/presentation/components/emoji_popup.dart';
-import 'package:princess_diaries/presentation/settings/setting_theme_top_level.dart';
+import 'package:princess_diaries/presentation/settings/theme/setting_theme_top_level.dart';
 import 'package:provider/provider.dart';
 
 class AddEditPostScreen extends StatefulWidget {
