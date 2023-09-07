@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:princess_diaries/presentation/components/time_line_calendar_header.dart';
@@ -51,11 +49,8 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
                 (post) => InkWell(
                   // TODO : 삭제 후 복구 기능 추가
                   onTap: () async {
-                    final uri = Uri(
-                      path: '/edit_post',
-                      queryParameters: {'post': jsonEncode(post.toJson())},
-                    );
-                    bool? isSaved = await context.push(uri.toString());
+                    bool? isSaved =
+                        await context.push('/edit_post', extra: post);
 
                     if (isSaved != null && isSaved) {
                       viewModel.onEvent(const TimeLineUiEvent.loadPosts());

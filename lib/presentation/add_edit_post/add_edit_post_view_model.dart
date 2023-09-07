@@ -5,10 +5,14 @@ import 'package:injectable/injectable.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/domain/repository/post_repository.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_event.dart';
+import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_ui_event.dart';
 
 @injectable
 class AddEditPostViewModel with ChangeNotifier {
   final PostRepository _repository;
+
+  final _eventController = StreamController<AddEditPostUiEvent>.broadcast();
+  Stream<AddEditPostUiEvent> get eventStream => _eventController.stream;
 
   AddEditPostViewModel(this._repository);
 
@@ -39,5 +43,7 @@ class AddEditPostViewModel with ChangeNotifier {
         ),
       );
     }
+
+    _eventController.add(const AddEditPostUiEvent.editPost());
   }
 }

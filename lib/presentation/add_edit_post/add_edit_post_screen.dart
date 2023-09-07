@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_event.dart';
+import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_ui_event.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_view_model.dart';
 import 'package:princess_diaries/presentation/components/emoji_popup.dart';
 import 'package:princess_diaries/presentation/settings/setting_theme_top_level.dart';
@@ -22,6 +25,7 @@ class AddEditPostScreen extends StatefulWidget {
 class _AddEditPostScreenState extends State<AddEditPostScreen> {
   String? _selectedEmoji;
   final _contentController = TextEditingController();
+  StreamSubscription? _streamSubscription;
 
   void _showPopup(BuildContext context) async {
     final selectedValue = await showDialog(
@@ -39,7 +43,30 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    if (widget.post != null) {
+      _selectedEmoji = widget.post!.emoji;
+      _contentController.text = widget.post!.content;
+      // TODO : 날짜 추가 (UI도)
+    }
+
+    Future.microtask(() {
+      final viewModel = context.read<AddEditPostViewModel>();
+
+      _streamSubscription = viewModel.eventStream.listen((event) {
+        switch (event) {
+          case EditPost():
+            context.pop(true);
+        }
+      });
+    });
+  }
+
+  @override
   void dispose() {
+    _streamSubscription?.cancel();
     _contentController.dispose();
     super.dispose();
   }
