@@ -88,7 +88,6 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
               _contentController.text,
             ),
           );
-          context.pop();
         },
         backgroundColor: Colors.black,
         child: const Icon(
