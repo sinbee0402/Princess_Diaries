@@ -4,9 +4,6 @@ import 'package:timezone/standalone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
 initializeNotification() async {
-  // final StreamController<String?> selectNotificationStream =
-  //     StreamController<String?>.broadcast();
-
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
@@ -74,8 +71,8 @@ initializeNotification() async {
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
       0,
-      '매일 오후 8시 알림',
-      '기본 알림으로 설정되었습니다',
+      '매일 오후 $setHour시 알림',
+      '알림이 설정되었습니다',
       scheduledDate,
       notificationDetails,
       androidScheduleMode: AndroidScheduleMode.alarmClock, // 저전력 모드일 때에도 알림 실행
