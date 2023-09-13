@@ -24,8 +24,6 @@ class _CurvedNavigationWidgetState extends State<CurvedNavigationWidget> {
   void initState() {
     super.initState();
 
-    permissionNotification();
-
     _screens = [
       ChangeNotifierProvider(
         create: (_) => getIt<MainViewModel>(),
