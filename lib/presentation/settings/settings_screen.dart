@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:go_router/go_router.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:princess_diaries/presentation/settings/alarm/local_notification.dart';
 import 'package:princess_diaries/presentation/settings/theme/setting_theme_dialog.dart';
 import 'package:princess_diaries/presentation/settings/theme/setting_theme_top_level.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -12,6 +15,8 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  int _hour = 20;
+
   void _showPopup(BuildContext context) async {
     final selectedValue = await showDialog(
       context: context,
@@ -25,6 +30,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
         changeTheme(selectedValue);
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+//    _enableAlarm();
   }
 
   @override
@@ -82,13 +93,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       color: Colors.black,
                     ),
                     activeSwitchColor: Colors.transparent,
-                    initialValue: true,
+                    initialValue: notificationsEnabled,
                     onPressed: (context) {
                       // TODO : 알림 시간 설정
                     },
-                    description: const Text('시간'),
-                    onToggle: (value) {
-                      // TODO : 알림 on / off
+                    description: Text('$_hour시'),
+                    onToggle: (value) async {
+                      setState(() {
+                        notificationsEnabled = value;
+                      });
+
+                      if (value) {
+                        PermissionStatus changedStatus =
+                            await Permission.notification.status;
+                        if (changedStatus == PermissionStatus.denied) {
+                          permissionNotification();
+                        }
+                        sendDailyNotification(_hour);
+                        onNotification();
+                      } else {
+                        notificationsEnabled = false;
+                        FlutterLocalNotificationsPlugin().cancelAll();
+                      }
                     },
                   ),
                   SettingsTile.navigation(
