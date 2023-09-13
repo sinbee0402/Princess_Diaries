@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:princess_diaries/di/di_setup.dart';
 import 'package:princess_diaries/presentation/main/main_screen.dart';
 import 'package:princess_diaries/presentation/main/main_view_model.dart';
-import 'package:princess_diaries/presentation/settings/alarm/local_notification.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_screen.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_view_model.dart';
 import 'package:provider/provider.dart';

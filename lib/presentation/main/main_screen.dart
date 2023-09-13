@@ -165,7 +165,6 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 daysOfWeekHeight: 24,
               ),
-              const SizedBox(height: 80),
             ],
           ),
           // const SizedBox(height: 80),

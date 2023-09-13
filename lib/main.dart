@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:princess_diaries/core/router.dart';
-
 import 'package:princess_diaries/di/di_setup.dart';
-
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
