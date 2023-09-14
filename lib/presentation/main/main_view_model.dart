@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:intl/intl.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/domain/repository/post_repository.dart';
 import 'package:princess_diaries/presentation/main/main_state.dart';
@@ -16,17 +17,30 @@ class MainViewModel with ChangeNotifier {
 
   void onEvent(MainUiEvent event) {
     switch (event) {
-      case LoadPosts():
-        _loadPosts;
+      case LoadEmojis(:final yM):
+        _loadEmojis(yM);
       // case DeletePost():
       //   _deletePost;
     }
   }
 
-  Future<void> _loadPosts() async {
-    List<Post> posts = await _repository.getPosts();
+  Future<void> _loadEmojis(int yM) async {
+    List<Post> posts = await _repository.getPosts(yM);
     _state = state.copyWith(
       posts: posts,
+    );
+    notifyListeners();
+
+    Map<DateTime, String> events = {};
+    posts.forEach((post) {
+      final date = DateFormat('yyyy-MM-dd, H:m').parse(post.date);
+      final emoji = post.emoji;
+
+      events[date] = emoji;
+    });
+
+    _state = state.copyWith(
+      events: events,
     );
     notifyListeners();
   }

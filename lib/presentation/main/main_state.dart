@@ -10,6 +10,7 @@ part 'main_state.g.dart';
 class MainState with _$MainState {
   const factory MainState({
     @Default([]) List<Post> posts,
+    @Default({}) Map<DateTime, String> events,
   }) = _MainState;
 
   factory MainState.fromJson(Map<String, Object?> json) =>
