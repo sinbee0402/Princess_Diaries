@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:princess_diaries/presentation/components/time_line_calendar_header.dart';
 import 'package:princess_diaries/presentation/components/time_line_list_item.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_ui_event.dart';
@@ -14,8 +15,6 @@ class TimeLineScreen extends StatefulWidget {
 }
 
 class _TimeLineScreenState extends State<TimeLineScreen> {
-  final DateTime _focusedDay = DateTime.now();
-
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<TimeLineViewModel>();
@@ -25,7 +24,16 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: TimeLineCalendarHeader(
-          focusedMonth: _focusedDay,
+          focusedMonth: viewModel.focusedMonth,
+          onMonthChanged: (newMonth) {
+            viewModel.changeMonth(newMonth); // 월 변경 이벤트 처리
+            viewModel.onEvent(
+              // 포스트 다시 불러오기
+              TimeLineUiEvent.loadPosts(
+                int.parse(DateFormat('yyyyMM').format(newMonth)),
+              ),
+            );
+          },
         ),
         actions: [
           IconButton(
@@ -53,7 +61,12 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
                         await context.push('/edit_post', extra: post);
 
                     if (isSaved != null && isSaved) {
-                      viewModel.onEvent(const TimeLineUiEvent.loadPosts());
+                      viewModel.onEvent(
+                        TimeLineUiEvent.loadPosts(
+                          int.parse(DateFormat('yyyyMM')
+                              .format(viewModel.focusedMonth)),
+                        ),
+                      );
                     }
                   },
                   child: TimeLineListItem(post: post),

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class TimeLineCalendarHeader extends StatefulWidget {
   DateTime focusedMonth;
+  final ValueChanged<DateTime> onMonthChanged;
 
   TimeLineCalendarHeader({
     Key? key,
     required this.focusedMonth,
+    required this.onMonthChanged,
   }) : super(key: key);
 
   @override
@@ -13,6 +15,28 @@ class TimeLineCalendarHeader extends StatefulWidget {
 }
 
 class _TimeLineCalendarHeaderState extends State<TimeLineCalendarHeader> {
+  void _prevMonth() {
+    setState(() {
+      widget.onMonthChanged(
+        DateTime(
+          widget.focusedMonth.year,
+          widget.focusedMonth.month - 1,
+        ),
+      );
+    });
+  }
+
+  void _nextMonth() {
+    setState(() {
+      widget.onMonthChanged(
+        DateTime(
+          widget.focusedMonth.year,
+          widget.focusedMonth.month + 1,
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,12 +46,7 @@ class _TimeLineCalendarHeaderState extends State<TimeLineCalendarHeader> {
         children: [
           IconButton(
             onPressed: () {
-              setState(() {
-                widget.focusedMonth = DateTime(
-                  widget.focusedMonth.year,
-                  widget.focusedMonth.month - 1,
-                );
-              });
+              _prevMonth();
             },
             icon: const Icon(Icons.chevron_left),
           ),
@@ -49,12 +68,7 @@ class _TimeLineCalendarHeaderState extends State<TimeLineCalendarHeader> {
           ),
           IconButton(
             onPressed: () {
-              setState(() {
-                widget.focusedMonth = DateTime(
-                  widget.focusedMonth.year,
-                  widget.focusedMonth.month + 1,
-                );
-              });
+              _nextMonth();
             },
             icon: const Icon(Icons.chevron_right),
           )
