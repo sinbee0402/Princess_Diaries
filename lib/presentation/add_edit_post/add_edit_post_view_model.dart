@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:intl/intl.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/domain/repository/post_repository.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_event.dart';
@@ -29,8 +30,9 @@ class AddEditPostViewModel with ChangeNotifier {
       await _repository.insertPost(
         Post(
           emoji: emoji,
-          date: DateTime.now().millisecondsSinceEpoch,
           content: content,
+          date: DateFormat('yyyy-MM-dd, H:m').format(DateTime.now()),
+          yearMonth: int.parse(DateFormat('yyyyMM').format(DateTime.now())),
         ),
       );
     } else {
@@ -38,8 +40,9 @@ class AddEditPostViewModel with ChangeNotifier {
         Post(
           id: id,
           emoji: emoji,
-          date: DateTime.now().millisecondsSinceEpoch,
           content: content,
+          date: DateFormat('yyyy-MM-dd, H:m').format(DateTime.now()),
+          yearMonth: int.parse(DateFormat('yyyyMM').format(DateTime.now())),
         ),
       );
     }

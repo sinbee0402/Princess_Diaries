@@ -10,8 +10,9 @@ class Post with _$Post {
   const factory Post({
     int? id,
     required String emoji,
-    required int date,
     required String content,
+    required String date,
+    required int yearMonth,
   }) = _Post;
 
   factory Post.fromJson(Map<String, Object?> json) => _$PostFromJson(json);
