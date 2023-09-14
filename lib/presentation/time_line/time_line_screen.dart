@@ -26,13 +26,8 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
         title: TimeLineCalendarHeader(
           focusedMonth: viewModel.focusedMonth,
           onMonthChanged: (newMonth) {
-            viewModel.changeMonth(newMonth); // 월 변경 이벤트 처리
-            viewModel.onEvent(
-              // 포스트 다시 불러오기
-              TimeLineUiEvent.loadPosts(
-                int.parse(DateFormat('yyyyMM').format(newMonth)),
-              ),
-            );
+            // TODO : 월 변경 이벤트 처리 - DB 데이터 필터링
+            viewModel.changeMonth(newMonth); // 월 변경 유지
           },
         ),
         actions: [
@@ -62,10 +57,7 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
 
                     if (isSaved != null && isSaved) {
                       viewModel.onEvent(
-                        TimeLineUiEvent.loadPosts(
-                          int.parse(DateFormat('yyyyMM')
-                              .format(viewModel.focusedMonth)),
-                        ),
+                        const TimeLineUiEvent.loadPosts(),
                       );
                     }
                   },

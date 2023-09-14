@@ -18,7 +18,7 @@ class MainViewModel with ChangeNotifier {
 
   void onEvent(MainUiEvent event) {
     switch (event) {
-      case LoadEmojis():
+      case LoadPosts():
         _loadPosts();
       // case DeletePost():
       //   _deletePost;

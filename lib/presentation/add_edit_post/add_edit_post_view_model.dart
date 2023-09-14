@@ -41,7 +41,7 @@ class AddEditPostViewModel with ChangeNotifier {
           emojiPath: emoji,
           content: content,
           updateTime: DateTime.now(),
-          postingTime: DateTime.now(),
+          postingTime: DateTime.now(), // TODO : postingTime 어떻게 전달할건지
         ),
       );
     }

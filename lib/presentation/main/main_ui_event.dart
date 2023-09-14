@@ -5,6 +5,6 @@ part 'main_ui_event.freezed.dart';
 
 @freezed
 sealed class MainUiEvent<T> with _$MainUiEvent<T> {
-  const factory MainUiEvent.loadEmojis(int yM) = LoadEmojis;
+  const factory MainUiEvent.loadPosts() = LoadPosts;
   //const factory MainUiEvent.deletePost(Post post) = DeletePost;
 }
