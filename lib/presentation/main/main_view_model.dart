@@ -1,46 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:intl/intl.dart';
 import 'package:princess_diaries/domain/model/post.dart';
-import 'package:princess_diaries/domain/repository/post_repository.dart';
+import 'package:princess_diaries/domain/use_case/get_posts_use_case.dart';
 import 'package:princess_diaries/presentation/main/main_state.dart';
 import 'package:princess_diaries/presentation/main/main_ui_event.dart';
 
 @injectable
 class MainViewModel with ChangeNotifier {
-  final PostRepository _repository;
+  final GetPostsUseCase _getPostsUseCase;
 
   MainState _state = const MainState();
   MainState get state => _state;
 
-  MainViewModel(this._repository);
+  MainViewModel(this._getPostsUseCase) {
+    _loadPosts();
+  }
 
   void onEvent(MainUiEvent event) {
     switch (event) {
-      case LoadEmojis(:final yM):
-        _loadEmojis(yM);
+      case LoadEmojis():
+        _loadPosts();
       // case DeletePost():
       //   _deletePost;
     }
   }
 
-  Future<void> _loadEmojis(int yM) async {
-    List<Post> posts = await _repository.getPosts(yM);
+  Future<void> _loadPosts() async {
+    List<Post> posts = await _getPostsUseCase.call();
     _state = state.copyWith(
       posts: posts,
-    );
-    notifyListeners();
-
-    Map<DateTime, String> events = {};
-    posts.forEach((post) {
-      final date = DateFormat('yyyy-MM-dd, H:m').parse(post.date);
-      final emoji = post.emoji;
-
-      events[date] = emoji;
-    });
-
-    _state = state.copyWith(
-      events: events,
     );
     notifyListeners();
   }

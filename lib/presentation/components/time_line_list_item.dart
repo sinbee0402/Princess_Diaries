@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 
 class TimeLineListItem extends StatelessWidget {
@@ -34,7 +35,7 @@ class TimeLineListItem extends StatelessWidget {
               child: SizedBox(
                 width: 100,
                 child: Image.asset(
-                  post.emoji,
+                  post.emojiPath,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -54,7 +55,7 @@ class TimeLineListItem extends StatelessWidget {
                     ),
                     const SizedBox(height: 40),
                     Text(
-                      '${post.date}',
+                      DateFormat('yyyy-MM-dd, H:m').format(post.updateTime),
                       style: const TextStyle(
                         fontSize: 12,
                         color: Colors.grey,

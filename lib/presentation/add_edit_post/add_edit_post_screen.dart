@@ -47,7 +47,7 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
     super.initState();
 
     if (widget.post != null) {
-      _selectedEmoji = widget.post!.emoji;
+      _selectedEmoji = widget.post!.emojiPath;
       _contentController.text = widget.post!.content;
       // TODO : 날짜 추가 (UI도)
     }

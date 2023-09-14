@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:intl/intl.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/domain/repository/post_repository.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_event.dart';
@@ -29,20 +28,20 @@ class AddEditPostViewModel with ChangeNotifier {
     if (id == null) {
       await _repository.insertPost(
         Post(
-          emoji: emoji,
+          emojiPath: emoji,
           content: content,
-          date: DateFormat('yyyy-MM-dd, H:m').format(DateTime.now()),
-          yearMonth: int.parse(DateFormat('yyyyMM').format(DateTime.now())),
+          updateTime: DateTime.now(),
+          postingTime: DateTime.now(),
         ),
       );
     } else {
       await _repository.updatePost(
         Post(
           id: id,
-          emoji: emoji,
+          emojiPath: emoji,
           content: content,
-          date: DateFormat('yyyy-MM-dd, H:m').format(DateTime.now()),
-          yearMonth: int.parse(DateFormat('yyyyMM').format(DateTime.now())),
+          updateTime: DateTime.now(),
+          postingTime: DateTime.now(),
         ),
       );
     }

@@ -8,8 +8,8 @@ class GetPostsUseCase {
 
   GetPostsUseCase(this._repository);
 
-  Future<List<Post>> call(int yM) async {
-    List<Post> posts = await _repository.getPosts(yM);
+  Future<List<Post>> call() async {
+    List<Post> posts = await _repository.getPosts();
 
     return posts;
   }

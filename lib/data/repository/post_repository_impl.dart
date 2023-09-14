@@ -10,8 +10,8 @@ class PostRepositoryImpl implements PostRepository {
   PostRepositoryImpl(this._db);
 
   @override
-  Future<List<Post>> getPosts(int yM) async {
-    return await _db.getPosts(yM);
+  Future<List<Post>> getPosts() async {
+    return await _db.getPosts();
   }
 
   @override

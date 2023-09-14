@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:princess_diaries/presentation/main/main_ui_event.dart';
 import 'package:princess_diaries/presentation/main/main_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -115,13 +114,7 @@ class _MainScreenState extends State<MainScreen> {
                   _focusedDay = focusedDay;
                 },
                 eventLoader: (date) {
-                  viewModel.onEvent(
-                    MainUiEvent.loadEmojis(
-                      int.parse(DateFormat('yyyyMM').format(date)),
-                    ),
-                  );
-
-                  return [state.events[date] ?? ''];
+                  return [];
                 },
                 headerStyle: HeaderStyle(
                   titleCentered: true,
@@ -147,7 +140,13 @@ class _MainScreenState extends State<MainScreen> {
                         fit: BoxFit.cover),
                     //color: Colors.pinkAccent,
                   ),
-
+                  markerDecoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: AssetImage('assets/icon-question-mark.png'),
+                        fit: BoxFit.cover),
+                    //color: Colors.pinkAccent,
+                  ),
                   todayDecoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.transparent,

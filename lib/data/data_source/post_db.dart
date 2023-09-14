@@ -8,13 +8,9 @@ class PostDb {
 
   PostDb(this._db);
 
-  Future<List<Post>> getPosts(int yM) async {
+  Future<List<Post>> getPosts() async {
     // SELECT * FROM post
-    final posts = await _db.query(
-      'post',
-      where: 'yearMonth = ?',
-      whereArgs: [yM],
-    );
+    final posts = await _db.query('post');
     return posts.map((e) => Post.fromJson(e)).toList();
   }
 

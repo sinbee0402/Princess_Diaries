@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:intl/intl.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/domain/use_case/use_cases.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_state.dart';
@@ -19,11 +18,7 @@ class TimeLineViewModel with ChangeNotifier {
   Post? _recentlyDeletedPost;
 
   TimeLineViewModel(this.useCases) {
-    _loadPosts(
-      int.parse(
-        DateFormat('yyyyMM').format(DateTime.now()),
-      ),
-    );
+    _loadPosts();
   }
 
   void changeMonth(DateTime newMonth) {
@@ -33,8 +28,8 @@ class TimeLineViewModel with ChangeNotifier {
 
   void onEvent(TimeLineUiEvent event) {
     switch (event) {
-      case LoadPosts(:final yM):
-        _loadPosts(yM);
+      case LoadPosts():
+        _loadPosts();
       case DeletePost():
         _deletePost;
       case RestorePost():
@@ -42,8 +37,8 @@ class TimeLineViewModel with ChangeNotifier {
     }
   }
 
-  Future<void> _loadPosts(int yM) async {
-    List<Post> posts = await useCases.getPosts(yM);
+  Future<void> _loadPosts() async {
+    List<Post> posts = await useCases.getPosts();
     _state = state.copyWith(
       posts: posts,
     );
@@ -54,14 +49,14 @@ class TimeLineViewModel with ChangeNotifier {
     await useCases.deletePost(post);
     _recentlyDeletedPost = post;
 
-    await _loadPosts(post.yearMonth);
+    await _loadPosts();
   }
 
   Future<void> _restorePost() async {
     if (_recentlyDeletedPost != null) {
       await useCases.addPost(_recentlyDeletedPost!);
 
-      _loadPosts(_recentlyDeletedPost!.yearMonth);
+      await _loadPosts();
 
       _recentlyDeletedPost = null;
     }
