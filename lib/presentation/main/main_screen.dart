@@ -30,39 +30,24 @@ class _MainScreenState extends State<MainScreen> {
   );
 
   Widget _buildDowWidget(DateTime date) {
-    Color color;
-    if (date.weekday == DateTime.saturday) {
-      color = Colors.blue;
-    } else if (date.weekday == DateTime.sunday) {
-      color = Colors.red;
-    } else {
-      color = Colors.black;
-    }
-
-    final dowText = DateFormat.E('ko_KR').format(date);
+    final dowText = DateFormat.E().format(date)[0];
 
     return Center(
       child: Text(
         dowText,
-        style: TextStyle(color: color),
+        style: TextStyle(
+          color: Colors.black.withOpacity(0.5),
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }
 
   Widget _buildDayWidget(DateTime date) {
-    Color color;
-    if (date.weekday == DateTime.saturday) {
-      color = Colors.blue;
-    } else if (date.weekday == DateTime.sunday) {
-      color = Colors.red;
-    } else {
-      color = Colors.black;
-    }
-
     return Center(
       child: Text(
         date.day.toString(),
-        style: TextStyle(color: color),
+        style: const TextStyle(color: Colors.black),
       ),
     );
   }
@@ -74,6 +59,10 @@ class _MainScreenState extends State<MainScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          DateFormat.yMMMM('ko_KR').format(viewModel.focusedMonth),
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.share),
@@ -112,55 +101,49 @@ class _MainScreenState extends State<MainScreen> {
                 },
                 onPageChanged: (focusedDay) {
                   _focusedDay = focusedDay;
+                  viewModel.changeMonth(_focusedDay);
                 },
                 eventLoader: (date) {
                   return [];
                 },
                 headerStyle: HeaderStyle(
                   titleCentered: true,
-                  titleTextFormatter: (date, locale) =>
-                      DateFormat.MMMM(locale).format(date),
+                  titleTextFormatter: (date, locale) {
+                    return DateFormat.yMMMM().format(date);
+                  },
                   formatButtonVisible: false,
                   headerPadding: const EdgeInsets.symmetric(vertical: 16),
                   titleTextStyle: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
-                  leftChevronVisible: false,
-                  rightChevronVisible: false,
-                  // leftChevronIcon: Icon(Icons.chevron_left),
-                  // rightChevronIcon: Icon(Icons.chevron_right),
+                  leftChevronVisible: true,
+                  rightChevronVisible: true,
                 ),
-                calendarStyle: CalendarStyle(
-                  selectedTextStyle: const TextStyle(color: Colors.transparent),
-                  selectedDecoration: const BoxDecoration(
+                calendarStyle: const CalendarStyle(
+                  selectedTextStyle: TextStyle(color: Colors.transparent),
+                  selectedDecoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
                         image: AssetImage('assets/icon-question-mark.png'),
                         fit: BoxFit.cover),
-                    //color: Colors.pinkAccent,
                   ),
-                  markerDecoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/icon-question-mark.png'),
-                        fit: BoxFit.cover),
-                    //color: Colors.pinkAccent,
-                  ),
+                  // markerDecoration: const BoxDecoration(
+                  //   shape: BoxShape.circle,
+                  //   image: DecorationImage(
+                  //       image: AssetImage('assets/icon-question-mark.png'),
+                  //       fit: BoxFit.cover),
+                  //   //color: Colors.pinkAccent,
+                  // ),
                   todayDecoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.transparent,
-                    border: Border.all(
-                      color: Colors.pinkAccent,
-                      width: 2,
-                    ),
+                    color: Color(0xFFF7B7D3),
                   ),
-                  todayTextStyle: const TextStyle(
-                    color: Colors.black,
+                  todayTextStyle: TextStyle(
+                    color: Color(0xFFED0F69),
                     fontWeight: FontWeight.bold,
                   ),
-                  // weekendTextStyle: const TextStyle(color: Colors.red),
-                  holidayTextStyle: const TextStyle(color: Colors.red),
+                  holidayTextStyle: TextStyle(color: Colors.red),
                 ),
                 calendarBuilders: CalendarBuilders(
                   dowBuilder: (_, weekday) {

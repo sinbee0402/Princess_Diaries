@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:princess_diaries/domain/model/post.dart';
-import 'package:princess_diaries/domain/use_case/get_posts_use_case.dart';
+import 'package:princess_diaries/domain/use_case/use_cases.dart';
 import 'package:princess_diaries/presentation/main/main_state.dart';
 import 'package:princess_diaries/presentation/main/main_ui_event.dart';
 
 @injectable
 class MainViewModel with ChangeNotifier {
-  final GetPostsUseCase _getPostsUseCase;
+  final UseCases _useCases;
+
+  DateTime _focusedMonth = DateTime.now();
+  DateTime get focusedMonth => _focusedMonth;
 
   MainState _state = const MainState();
   MainState get state => _state;
 
-  MainViewModel(this._getPostsUseCase) {
+  MainViewModel(this._useCases) {
     _loadPosts();
+  }
+
+  void changeMonth(DateTime newMonth) {
+    _focusedMonth = newMonth;
+    notifyListeners(); // 변경 사항을 리스너에 알립니다.
   }
 
   void onEvent(MainUiEvent event) {
@@ -26,7 +34,7 @@ class MainViewModel with ChangeNotifier {
   }
 
   Future<void> _loadPosts() async {
-    List<Post> posts = await _getPostsUseCase.call();
+    List<Post> posts = await _useCases.getPosts();
     _state = state.copyWith(
       posts: posts,
     );

@@ -40,7 +40,7 @@ class _CurvedNavigationWidgetState extends State<CurvedNavigationWidget> {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
         height: 75,
-        color: Colors.black,
+        color: const Color(0xFFF287B7),
         backgroundColor: Colors.transparent,
         items: const <Widget>[
           Icon(
@@ -65,7 +65,7 @@ class _CurvedNavigationWidgetState extends State<CurvedNavigationWidget> {
         shape: const CircleBorder(),
         child: const Icon(
           Icons.add,
-          color: Colors.black,
+          color: Color(0xFFF287B7),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
