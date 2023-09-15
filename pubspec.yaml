@@ -29,6 +29,7 @@ dependencies:
   flutter_local_notifications: ^15.1.1
   timezone: ^0.9.2
   permission_handler: ^11.0.0
+  flutter_native_splash: ^2.3.2
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +40,19 @@ dev_dependencies:
   build_runner: ^2.4.6
   json_serializable: ^6.7.1
   injectable_generator: ^2.1.6
+
+flutter_native_splash:
+  color: "#F287B7"
+  image: assets/splash.png
+  fullscreen: true
+  android_gravity: center
+  # ios_content_mode: center
+  # 명령어 : flutter pub run flutter_native_splash:create
+
+  android_12:
+    image: assets/splash.png
+    color: "#F287B7"
+
 
 flutter:
 
