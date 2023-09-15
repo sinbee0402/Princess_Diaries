@@ -44,10 +44,20 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Widget _buildDayWidget(DateTime date) {
+    Color color;
+
+    if (date == DateTime.now()) {
+      color = Colors.black;
+    } else if (date.isBefore(DateTime.now())) {
+      color = Colors.black;
+    } else {
+      color = Colors.grey;
+    }
+
     return Center(
       child: Text(
         date.day.toString(),
-        style: const TextStyle(color: Colors.black),
+        style: TextStyle(color: color),
       ),
     );
   }
