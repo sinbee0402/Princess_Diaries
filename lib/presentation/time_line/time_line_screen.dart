@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:princess_diaries/presentation/components/time_line_calendar_header.dart';
 import 'package:princess_diaries/presentation/components/time_line_list_item.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_ui_event.dart';
@@ -47,7 +46,7 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
       ),
       body: ListView(
         children: [
-          ...state.posts
+          ...state.filteredPosts
               .map(
                 (post) => InkWell(
                   // TODO : 삭제 후 복구 기능 추가

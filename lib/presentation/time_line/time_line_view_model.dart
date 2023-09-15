@@ -10,9 +10,11 @@ class TimeLineViewModel with ChangeNotifier {
   final UseCases useCases;
 
   DateTime _focusedMonth = DateTime.now();
+
   DateTime get focusedMonth => _focusedMonth;
 
   TimeLineState _state = const TimeLineState();
+
   TimeLineState get state => _state;
 
   Post? _recentlyDeletedPost;
@@ -23,6 +25,12 @@ class TimeLineViewModel with ChangeNotifier {
 
   void changeMonth(DateTime newMonth) {
     _focusedMonth = newMonth;
+    _state = state.copyWith(
+        filteredPosts: state.posts
+            .where((post) =>
+                post.postingTime.year == _focusedMonth.year &&
+                post.postingTime.month == _focusedMonth.month)
+            .toList());
     notifyListeners(); // 변경 사항을 리스너에 알립니다.
   }
 
@@ -41,6 +49,7 @@ class TimeLineViewModel with ChangeNotifier {
     List<Post> posts = await useCases.getPosts();
     _state = state.copyWith(
       posts: posts,
+      filteredPosts: posts,
     );
     notifyListeners();
   }

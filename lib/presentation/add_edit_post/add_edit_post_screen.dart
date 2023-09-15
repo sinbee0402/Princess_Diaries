@@ -27,6 +27,8 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
   final _contentController = TextEditingController();
   StreamSubscription? _streamSubscription;
 
+  late Post _post;
+
   void _showPopup(BuildContext context) async {
     final selectedValue = await showDialog(
       context: context,
@@ -38,6 +40,9 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
     if (selectedValue != null) {
       setState(() {
         _selectedEmoji = selectedValue;
+        _post = _post.copyWith(
+          emojiPath: selectedValue,
+        );
       });
     }
   }
@@ -50,6 +55,14 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
       _selectedEmoji = widget.post!.emojiPath;
       _contentController.text = widget.post!.content;
       // TODO : 날짜 추가 (UI도)
+      _post = widget.post!;
+    } else {
+      _post = Post(
+        emojiPath: 'assets/icon-question-mark.png',
+        content: '',
+        postingTime: DateTime.now(),
+        updateTime: DateTime.now(),
+      );
     }
 
     Future.microtask(() {
@@ -80,13 +93,7 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           viewModel.onEvent(
-            AddEditPostEvent.savePost(
-              widget.post == null ? null : widget.post!.id,
-              _selectedEmoji == null
-                  ? 'assets/icon-question-mark.png'
-                  : _selectedEmoji!,
-              _contentController.text,
-            ),
+            AddEditPostEvent.savePost(_post),
           );
         },
         backgroundColor: Colors.black,
@@ -130,6 +137,11 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
                       scrollDirection: Axis.vertical,
                       children: [
                         TextField(
+                          onChanged: (text) {
+                            _post = _post.copyWith(
+                              content: text,
+                            );
+                          },
                           controller: _contentController,
                           maxLines: null,
                           decoration: const InputDecoration(
