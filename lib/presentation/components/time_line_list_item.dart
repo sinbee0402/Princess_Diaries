@@ -17,7 +17,7 @@ class TimeLineListItem extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(30),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),
@@ -31,9 +31,9 @@ class TimeLineListItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(20.0),
               child: SizedBox(
-                width: 100,
+                width: 40,
                 child: Image.asset(
                   post.emojiPath,
                   fit: BoxFit.cover,
@@ -47,13 +47,21 @@ class TimeLineListItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      post.content,
+                      DateFormat('MM월 dd일 E요일', 'ko_KR')
+                          .format(post.postingTime),
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 8),
+                    Text(
+                      post.content,
+                      style: const TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
                     Text(
                       DateFormat('yyyy-MM-dd, H:m').format(post.updateTime),
                       style: const TextStyle(
