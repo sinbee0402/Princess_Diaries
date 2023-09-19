@@ -20,8 +20,8 @@ class AddEditPostViewModel with ChangeNotifier {
   void onEvent(AddEditPostEvent event) {
     switch (event) {
       //case ChangeBase(:final url):
-      case SavePost():
-        _savePost(event.post);
+      case SavePost(:final post):
+        _savePost(post);
     }
   }
 
