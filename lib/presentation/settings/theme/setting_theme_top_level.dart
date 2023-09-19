@@ -1,4 +1,4 @@
-String theme = 'assets/princess';
+String theme = 'assets/default';
 
 void changeTheme(String value) {
   theme = value;
