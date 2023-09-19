@@ -33,12 +33,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-//    _enableAlarm();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -46,7 +40,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 16),
+          // Container(
+          //   height: 200,
+          //   color: const Color(0xFFF287B7),
+          //   child: Stack(
+          //     children: [
+          //       Container(),
+          //       InkWell(),
+          //     ],
+          //   ),
+          // ),
           SettingsList(
             lightTheme:
                 const SettingsThemeData(settingsListBackground: Colors.white),

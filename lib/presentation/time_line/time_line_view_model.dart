@@ -10,11 +10,9 @@ class TimeLineViewModel with ChangeNotifier {
   final UseCases useCases;
 
   DateTime _focusedMonth = DateTime.now();
-
   DateTime get focusedMonth => _focusedMonth;
 
   TimeLineState _state = const TimeLineState();
-
   TimeLineState get state => _state;
 
   Post? _recentlyDeletedPost;
