@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_event.dart';
 import 'package:princess_diaries/presentation/add_edit_post/add_edit_post_ui_event.dart';
@@ -89,30 +90,73 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
     final viewModel = context.watch<AddEditPostViewModel>();
 
     return Scaffold(
-      appBar: AppBar(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          viewModel.onEvent(
-            AddEditPostEvent.savePost(_post),
-          );
-        },
-        backgroundColor: Colors.black,
-        child: const Icon(
-          Icons.save,
-          color: Colors.white,
-        ),
-      ),
+      backgroundColor: const Color(0xFFF7B7D3),
       body: Padding(
         padding:
-            const EdgeInsets.only(left: 32, right: 32, top: 20, bottom: 32),
+            const EdgeInsets.only(left: 24, right: 24, top: 48, bottom: 28),
         child: Container(
-          color: Colors.grey,
+          color: Colors.white,
           height: double.infinity,
           child: Stack(
             alignment: Alignment.center,
             children: [
               Positioned(
-                top: 32,
+                top: 21,
+                child: Text(
+                  DateFormat('yyyy. MM. dd').format(_post!.postingTime),
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 8,
+                left: 16,
+                child: TextButton(
+                  onPressed: () {
+                    context.pop();
+                  },
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    minimumSize: const Size(48, 28),
+                    side: const BorderSide(
+                      color: Color(0xFFF7B7D3),
+                    ),
+                    backgroundColor: Colors.white,
+                  ),
+                  child: const Text(
+                    '취소',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 8,
+                right: 16,
+                child: TextButton(
+                  onPressed: () {
+                    viewModel.onEvent(
+                      AddEditPostEvent.savePost(_post),
+                    );
+                  },
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    minimumSize: const Size(48, 28),
+                    side: const BorderSide(
+                      color: Color(0xFFF7B7D3),
+                    ),
+                    backgroundColor: Colors.white,
+                  ),
+                  child: const Text(
+                    '확인',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 72,
                 child: InkWell(
                   onTap: () {
                     _showPopup(context);
@@ -122,18 +166,25 @@ class _AddEditPostScreenState extends State<AddEditPostScreen> {
                         ? _selectedEmoji!
                         : 'assets/icon-question-mark.png',
                     fit: BoxFit.fill,
-                    width: 100,
+                    width: 90,
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    top: 160, left: 28, right: 28, bottom: 32),
+                    top: 200, left: 16, right: 16, bottom: 16),
                 child: Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: const Color(0xFFF7B7D3),
+                      width: 2.5,
+                    ),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: ListView(
+                      padding: EdgeInsets.zero,
                       scrollDirection: Axis.vertical,
                       children: [
                         TextField(
