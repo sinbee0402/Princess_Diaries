@@ -62,6 +62,7 @@ flutter:
     - assets/butler/
     - assets/maid/
     - assets/princess/
+    - assets/default/
 
   # fonts:
   #   - family: Schyler
