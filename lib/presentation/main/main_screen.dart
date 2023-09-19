@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:princess_diaries/presentation/components/future_popup.dart';
 import 'package:princess_diaries/presentation/main/main_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -15,7 +16,6 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final CalendarFormat _calendarFormat = CalendarFormat.month;
 
-  DateTime _selectedDay = DateTime.now();
   DateTime _focusedDay = DateTime.now();
 
   final _firstDay = DateTime.utc(
@@ -78,6 +78,12 @@ class _MainScreenState extends State<MainScreen> {
             icon: const Icon(Icons.share),
             onPressed: () {
               // TODO : 공유 기능
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const FuturePopup();
+                },
+              );
             },
           ),
           IconButton(
@@ -100,22 +106,19 @@ class _MainScreenState extends State<MainScreen> {
                 firstDay: _firstDay,
                 lastDay: _lastDay,
                 focusedDay: _focusedDay,
-                selectedDayPredicate: (day) {
-                  return isSameDay(_selectedDay, day);
-                },
-                onDaySelected: (selectedDay, focusedDay) {
-                  setState(() {
-                    _selectedDay = selectedDay;
-                    _focusedDay = focusedDay;
-                  });
-                },
                 onPageChanged: (focusedDay) {
                   _focusedDay = focusedDay;
                   viewModel.changeMonth(_focusedDay);
                 },
-                eventLoader: (date) {
-                  return [];
-                },
+                // eventLoader: (day) {
+                //   final List<Post> events = [];
+                //   state.posts.map((post) {
+                //     if (post.postingTime == day) {
+                //       events.add(post);
+                //     }
+                //   }).toList();
+                //   return events ?? [];
+                // },
                 headerStyle: HeaderStyle(
                   titleCentered: true,
                   titleTextFormatter: (date, locale) {
@@ -131,20 +134,12 @@ class _MainScreenState extends State<MainScreen> {
                   rightChevronVisible: true,
                 ),
                 calendarStyle: const CalendarStyle(
-                  selectedTextStyle: TextStyle(color: Colors.transparent),
-                  selectedDecoration: BoxDecoration(
+                  markerDecoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
                         image: AssetImage('assets/icon-question-mark.png'),
                         fit: BoxFit.cover),
                   ),
-                  // markerDecoration: const BoxDecoration(
-                  //   shape: BoxShape.circle,
-                  //   image: DecorationImage(
-                  //       image: AssetImage('assets/icon-question-mark.png'),
-                  //       fit: BoxFit.cover),
-                  //   //color: Colors.pinkAccent,
-                  // ),
                   todayDecoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color(0xFFF7B7D3),
@@ -162,6 +157,19 @@ class _MainScreenState extends State<MainScreen> {
                   defaultBuilder: (_, date, focusedDay) {
                     return _buildDayWidget(date);
                   },
+                  // markerBuilder: (_, date, event) {
+                  //   if (event.isNotEmpty) {
+                  //     return Container(
+                  //       decoration: const BoxDecoration(
+                  //         shape: BoxShape.circle,
+                  //         image: DecorationImage(
+                  //             image:
+                  //                 AssetImage('assets/icon-question-mark.png'),
+                  //             fit: BoxFit.cover),
+                  //       ),
+                  //     );
+                  //   }
+                  // },
                 ),
                 daysOfWeekStyle: const DaysOfWeekStyle(
                   weekendStyle: TextStyle(color: Colors.red),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:princess_diaries/presentation/components/future_popup.dart';
 import 'package:princess_diaries/presentation/components/time_line_calendar_header.dart';
 import 'package:princess_diaries/presentation/components/time_line_list_item.dart';
 import 'package:princess_diaries/presentation/time_line/time_line_ui_event.dart';
@@ -25,7 +26,6 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
         title: TimeLineCalendarHeader(
           focusedMonth: viewModel.focusedMonth,
           onMonthChanged: (newMonth) {
-            // TODO : 월 변경 이벤트 처리 - DB 데이터 필터링
             viewModel.changeMonth(newMonth); // 월 변경 유지
           },
         ),
@@ -34,6 +34,12 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
             icon: const Icon(Icons.share),
             onPressed: () {
               // TODO : 공유 기능
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return const FuturePopup();
+                },
+              );
             },
           ),
           IconButton(

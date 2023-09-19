@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:princess_diaries/presentation/components/future_popup.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 class SettingDataScreen extends StatelessWidget {
@@ -39,6 +40,12 @@ class SettingDataScreen extends StatelessWidget {
                     ),
                     onPressed: (context) {
                       // TODO : Google Drive 연동 기능
+                      showDialog(
+                        context: context,
+                        builder: (_) {
+                          return const FuturePopup();
+                        },
+                      );
                     },
                   ),
                 ],
@@ -60,6 +67,12 @@ class SettingDataScreen extends StatelessWidget {
                     ),
                     onPressed: (context) {
                       // TODO : 데이터 백업 기능
+                      showDialog(
+                        context: context,
+                        builder: (_) {
+                          return const FuturePopup();
+                        },
+                      );
                     },
                   ),
                   SettingsTile.navigation(
@@ -73,6 +86,12 @@ class SettingDataScreen extends StatelessWidget {
                     ),
                     onPressed: (context) {
                       // TODO : 데이터 복원 기능
+                      showDialog(
+                        context: context,
+                        builder: (_) {
+                          return const FuturePopup();
+                        },
+                      );
                     },
                   ),
                 ],
