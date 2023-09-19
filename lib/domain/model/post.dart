@@ -9,6 +9,7 @@ class Post with _$Post {
   const factory Post({
     int? id,
     required String emojiPath,
+    //@ColorConverter() required Color? color,
     required String content,
     @DateTimeConverter() required DateTime updateTime,
     @DateTimeConverter() required DateTime postingTime,
@@ -27,3 +28,13 @@ class DateTimeConverter implements JsonConverter<DateTime, int> {
   @override
   int toJson(DateTime date) => date.millisecondsSinceEpoch;
 }
+
+// class ColorConverter implements JsonConverter<Color, String> {
+//   const ColorConverter();
+//
+//   @override
+//   Color fromJson(String colorString) => Color(int.parse(colorString));
+//
+//   @override
+//   String toJson(Color color) => color.value.toString();
+// }
