@@ -16,8 +16,8 @@ class SettingDataScreen extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.all(12.0),
             child: Text(
-              'Google Drive에 데이터를 수동으로 백업하여 핸드폰이 바뀌어도 간편하게 복구할 수 있습니다. \n주기적으로 백업해야 데이터를 안전하게 보관할 수 있습니다.',
-              style: TextStyle(color: Colors.grey),
+              'Google Drive에 데이터를 수동으로 백업하여 핸드폰이 바뀌어도 간편하게 복구할 수 있습니다. 주기적으로 백업해야 데이터를 안전하게 보관할 수 있습니다.',
+              style: TextStyle(color: Colors.black),
             ),
           ),
           const SizedBox(height: 16),
