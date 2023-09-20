@@ -13,4 +13,9 @@ table_calendar 참고
 - https://happyhaelee.tistory.com/10
 - https://velog.io/@iamcoder/Flutter-tablecalendar
 - https://velog.io/@jun7332568/%ED%94%8C%EB%9F%AC%ED%84%B0flutter-%EB%8B%AC%EB%A0%A5-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-TableCalendar-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%ED%99%9C%EC%9A%A9
+
+flutter_local_notifications 참고
+- https://velog.io/@tygerhwang/FLUTTER-Local-Notifications1
+- https://velog.io/@tygerhwang/FLUTTER-Local-Notifications2
+- https://velog.io/@tygerhwang/FLUTTER-Local-Notifications3
 - 
