@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:princess_diaries/domain/model/post.dart';
 import 'package:princess_diaries/presentation/components/future_popup.dart';
 import 'package:princess_diaries/presentation/main/main_view_model.dart';
 import 'package:provider/provider.dart';
@@ -100,7 +101,7 @@ class _MainScreenState extends State<MainScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TableCalendar(
+              TableCalendar<Post>(
                 locale: 'ko_KR',
                 calendarFormat: _calendarFormat,
                 firstDay: _firstDay,
@@ -110,15 +111,13 @@ class _MainScreenState extends State<MainScreen> {
                   _focusedDay = focusedDay;
                   viewModel.changeMonth(_focusedDay);
                 },
-                // eventLoader: (day) {
-                //   final List<Post> events = [];
-                //   state.posts.map((post) {
-                //     if (post.postingTime == day) {
-                //       events.add(post);
-                //     }
-                //   }).toList();
-                //   return events ?? [];
-                // },
+                eventLoader: (day) {
+                  return state.posts.where((post) {
+                    return post.postingTime.year == day.year &&
+                        post.postingTime.month == day.month &&
+                        post.postingTime.day == day.day;
+                  }).toList();
+                },
                 headerStyle: HeaderStyle(
                   titleCentered: true,
                   titleTextFormatter: (date, locale) {
@@ -158,19 +157,19 @@ class _MainScreenState extends State<MainScreen> {
                   defaultBuilder: (_, date, focusedDay) {
                     return _buildDayWidget(date);
                   },
-                  // markerBuilder: (_, date, event) {
-                  //   if (event.isNotEmpty) {
-                  //     return Container(
-                  //       decoration: const BoxDecoration(
-                  //         shape: BoxShape.circle,
-                  //         image: DecorationImage(
-                  //             image:
-                  //                 AssetImage('assets/icon-question-mark.png'),
-                  //             fit: BoxFit.cover),
-                  //       ),
-                  //     );
-                  //   }
-                  // },
+                  markerBuilder: (_, date, event) {
+                    if (event.isNotEmpty) {
+                      return Container(
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image:
+                                  AssetImage('assets/icon-question-mark.png'),
+                              fit: BoxFit.cover),
+                        ),
+                      );
+                    }
+                  },
                 ),
                 daysOfWeekStyle: const DaysOfWeekStyle(
                   weekendStyle: TextStyle(color: Colors.red),
