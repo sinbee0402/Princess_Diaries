@@ -15,42 +15,64 @@ class SettingThemeDialog extends StatelessWidget {
         ),
       ),
       content: Wrap(
+        alignment: WrapAlignment.center,
         children: [
-          Row(
+          Column(
             children: [
-              InkWell(
-                onTap: () {
-                  context.pop('assets/princess');
-                  print('princess theme');
-                },
-                child: Image.asset(
-                  'assets/princess/5.png',
-                  // 'assets/princess/princess_2.png',
-                  fit: BoxFit.cover,
-                  width: 80,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      context.pop('assets/princess');
+                      print('princess theme');
+                    },
+                    child: Image.asset(
+                      'assets/princess/1.png',
+                      fit: BoxFit.cover,
+                      width: 70,
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  InkWell(
+                    onTap: () {
+                      context.pop('assets/butler');
+                      print('butler theme');
+                    },
+                    child: Image.asset(
+                      'assets/butler/1.png',
+                      fit: BoxFit.cover,
+                      width: 70,
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  InkWell(
+                    onTap: () {
+                      context.pop('assets/maid');
+                      print('maid theme');
+                    },
+                    child: Image.asset(
+                      'assets/maid/1.png',
+                      fit: BoxFit.cover,
+                      width: 70,
+                    ),
+                  ),
+                ],
               ),
-              InkWell(
-                onTap: () {
-                  context.pop('assets/butler');
-                  print('butler theme');
+              const SizedBox(height: 10),
+              TextButton(
+                onPressed: () {
+                  context.pop('assets/default');
                 },
-                child: Image.asset(
-                  'assets/butler/1.png',
-                  // 'assets/butler/butler_3.png',
-                  fit: BoxFit.cover,
-                  width: 80,
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  context.pop('assets/maid');
-                  print('maid theme');
-                },
-                child: Image.asset(
-                  'assets/maid/5.png',
-                  fit: BoxFit.cover,
-                  width: 80,
+                child: const Text(
+                  '기본테마로 설정',
+                  style: TextStyle(
+                    color: Color(0xFFF287B7),
+                    fontWeight: FontWeight.w600,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Color(0xFFF287B7),
+                    decorationThickness: 3,
+                  ),
                 ),
               ),
             ],
