@@ -143,12 +143,9 @@ class _MainScreenState extends State<MainScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                   holidayTextStyle: TextStyle(color: Colors.red),
-                  markerDecoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/icon-question-mark.png'),
-                        fit: BoxFit.cover),
-                  ),
+                  markerSize: 40,
+                  markersAlignment: AlignmentDirectional.center,
+                  markersAutoAligned: false,
                 ),
                 calendarBuilders: CalendarBuilders(
                   dowBuilder: (_, weekday) {
@@ -157,18 +154,21 @@ class _MainScreenState extends State<MainScreen> {
                   defaultBuilder: (_, date, focusedDay) {
                     return _buildDayWidget(date);
                   },
-                  markerBuilder: (_, date, event) {
-                    if (event.isNotEmpty) {
-                      return Container(
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image:
-                                  AssetImage('assets/icon-question-mark.png'),
-                              fit: BoxFit.cover),
-                        ),
-                      );
+                  markerBuilder: (_, date, events) {
+                    if (events.isNotEmpty) {
+                      for (var e in events) {
+                        Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: AssetImage(e.emojiPath),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      }
                     }
+                    return null;
                   },
                 ),
                 daysOfWeekStyle: const DaysOfWeekStyle(
