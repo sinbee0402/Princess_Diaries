@@ -134,12 +134,7 @@ class _MainScreenState extends State<MainScreen> {
                   rightChevronVisible: true,
                 ),
                 calendarStyle: const CalendarStyle(
-                  markerDecoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/icon-question-mark.png'),
-                        fit: BoxFit.cover),
-                  ),
+                  outsideDaysVisible: false,
                   todayDecoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Color(0xFFF7B7D3),
@@ -149,6 +144,12 @@ class _MainScreenState extends State<MainScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                   holidayTextStyle: TextStyle(color: Colors.red),
+                  markerDecoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: AssetImage('assets/icon-question-mark.png'),
+                        fit: BoxFit.cover),
+                  ),
                 ),
                 calendarBuilders: CalendarBuilders(
                   dowBuilder: (_, weekday) {
