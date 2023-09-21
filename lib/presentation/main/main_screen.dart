@@ -157,12 +157,12 @@ class _MainScreenState extends State<MainScreen> {
                   markerBuilder: (_, date, events) {
                     if (events.isNotEmpty) {
                       for (var e in events) {
-                        Container(
+                        return Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               image: AssetImage(e.emojiPath),
-                              fit: BoxFit.cover,
+                              fit: BoxFit.contain,
                             ),
                           ),
                         );
