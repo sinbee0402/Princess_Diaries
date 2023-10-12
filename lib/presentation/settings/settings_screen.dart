@@ -3,8 +3,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:princess_diaries/presentation/settings/alarm/local_notification.dart';
-import 'package:princess_diaries/presentation/settings/theme/setting_theme_dialog.dart';
-import 'package:princess_diaries/presentation/settings/theme/setting_theme_top_level.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -17,21 +15,6 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   int _hour = 20;
 
-  void _showPopup(BuildContext context) async {
-    final selectedValue = await showDialog(
-      context: context,
-      builder: (context) {
-        return const SettingThemeDialog();
-      },
-    );
-
-    if (selectedValue != null) {
-      setState(() {
-        changeTheme(selectedValue);
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,16 +23,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
       body: Column(
         children: [
-          // Container(
-          //   height: 200,
-          //   color: const Color(0xFFF287B7),
-          //   child: Stack(
-          //     children: [
-          //       Container(),
-          //       InkWell(),
-          //     ],
-          //   ),
-          // ),
           SettingsList(
             lightTheme:
                 const SettingsThemeData(settingsListBackground: Colors.white),
@@ -130,7 +103,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       color: Colors.black,
                     ),
                     onPressed: (context) {
-                      _showPopup(context);
+                      context.push('/setting_theme');
                     },
                   ),
                 ],
